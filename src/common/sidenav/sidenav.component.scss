@@ -1,0 +1,60 @@
+@import '../../styles/colors.scss';
+@import '../../styles/sizes.scss';
+
+.side-bar {
+  position: fixed;
+  height: calc(8 * 60px + 10px);
+  width: 65px;
+  left: 0;
+  top: calc(50vh + #{$header-height}/2);
+  transform: translateY(-50%);
+  background: $contrast-color;
+  border-radius: 0px 5px 5px 0;
+  padding: 5px 10px;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+
+
+  .side-bar-option {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid $line-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-links {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-links:hover {
+    background: $background-color1;
+  }
+
+
+  .side-bar-option:last-child { 
+    border-bottom: none;
+  }
+
+  .credit-icon {
+    height: 30px;
+  }
+
+  .ad-icon {
+    height: 25px;
+  }
+
+  .page-links{
+    color: $primary-color;
+  }
+
+  .page-links:hover, .active-page {
+    color: #44a1f4 !important;
+    background: rgba(135, 196, 250, 0.3) !important;
+  }
+}
