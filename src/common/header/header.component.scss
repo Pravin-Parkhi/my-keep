@@ -9,7 +9,25 @@
     background-color: $white-color;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 
     0px 4px 5px 0px rgba(0,0,0,0.14), 
     0px 1px 10px 0px rgba(0,0,0,0.12);
+
+    .left-section{
+        width: 20%;
+    }
+    .middle-section{
+        width: 50%;
+    }
+    .right-section{
+        width: 30%;
+        display: flex;
+        justify-content: flex-end;
+        .icon-wrapper{
+            &:last-child{
+                margin-left: 10px;
+            }
+        }
+    }
 }

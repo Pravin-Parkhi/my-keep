@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaSearch, FaCog } from 'react-icons/fa';
 
 import IconWrapper from '../icon-wrapper/icon-wrapper.component';
 
@@ -10,9 +10,22 @@ function Header (props) {
 
   return (
     <div className='header-wrapper'>
-      <IconWrapper>
-        <FaBars />
-      </IconWrapper>
+      <div className='left-section'>
+        <IconWrapper>
+          <FaBars />
+        </IconWrapper>
+      </div>
+      <div className='middle-section'>
+
+      </div>
+      <div className='right-section'>
+        <IconWrapper>
+          <FaSearch />
+        </IconWrapper>
+        <IconWrapper>
+          <FaCog />
+        </IconWrapper>
+      </div>
     </div>
   )
 }
