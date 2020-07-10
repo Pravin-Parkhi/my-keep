@@ -1,0 +1,15 @@
+@import '../../styles/colors.scss';
+
+.icon-wrapper{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+        cursor: pointer;
+        background-color: $icon-background-color;
+    }
+}

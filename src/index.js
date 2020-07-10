@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.css';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
+
+import './styles/index.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 import store from './store/index';
 import Routes from './routes/index';
