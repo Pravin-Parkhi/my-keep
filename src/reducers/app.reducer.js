@@ -1,17 +1,17 @@
 import ActionTypes from "../action-types/index"
 
 const defaultState = {
-  appThemeColor: 'red',
+  isDarkMode: false,
   isSideBarCollapsed: true
 };
 
 const appReducer = (state = defaultState, action) => {
   switch (action.type) {
     
-    case ActionTypes.SET_APP_THEME_COLOR: {
+    case ActionTypes.SET_APP_THEME: {
       return {
         ...state,
-        appThemeColor: action.color
+        isDarkMode: !state.isDarkMode
       }
     }
 

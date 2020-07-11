@@ -2,26 +2,29 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { FaBars, FaSearch, FaCog } from 'react-icons/fa';
 import { setSideBarVisibility } from '../../actions/app';
+import { DARK_THEME_BACKGROUND_COLOR, LIGHT_THEME_BACKGROUND_COLOR } from '../../constants/variables.constant';
 
+import SearchBar from '../search-bar/search-bar.component';
 import IconWrapper from '../icon-wrapper/icon-wrapper.component';
 
 import './header.component.scss'
 
-function Header (props) {
-  const { setSideBarVisibility } = props
+export default function Header (props) {
+  const { setSideBarVisibilityCallback, isDarkMode } = props
+  
   const handleHamburgerClick = () => {
-    setSideBarVisibility()
+    setSideBarVisibilityCallback()
   }
 
   return (
-    <div className='header-wrapper'>
+    <div className='header-wrapper' style={{backgroundColor: isDarkMode ? DARK_THEME_BACKGROUND_COLOR : LIGHT_THEME_BACKGROUND_COLOR}}>
       <div className='left-section'>
         <IconWrapper iconClickCallback={handleHamburgerClick}>
           <FaBars />
         </IconWrapper>
       </div>
       <div className='middle-section'>
-
+        <SearchBar />
       </div>
       <div className='right-section'>
         <IconWrapper>
@@ -34,11 +37,3 @@ function Header (props) {
     </div>
   )
 }
-
-function mapStateToProps (state) {
-  return {
-    appThemeColor: state.app.appThemeColor
-  }
-}
-
-export default (connect(mapStateToProps, { setSideBarVisibility })(Header))

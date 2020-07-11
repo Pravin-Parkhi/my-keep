@@ -1,0 +1,26 @@
+@import '../../styles/colors.scss';
+
+.search-bar-wrapper{
+    width: 100%;
+    display: flex;
+    padding: 4px 8px;
+    border-radius: 10px;
+    background-color: #f1f3f43d;
+    
+    input[type=text] {
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 16px;
+        border: none;
+        border-radius: 4px;
+        font-size: 17px;
+        background-color: transparent;
+        
+        &:focus{
+            background-color: $white-color;
+            .search-bar-wrapper{
+                background-color: $white-color !important;
+            }
+        }
+    }
+}

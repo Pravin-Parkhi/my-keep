@@ -1,7 +1,7 @@
 import { zipObject } from 'lodash'
 
 const ACTION_TYPES = [
-  'SET_APP_THEME_COLOR',
+  'SET_APP_THEME',
   'SET_SIDE_BAR_VISIBILITY'
 ]
 
