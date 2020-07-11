@@ -1,7 +1,8 @@
 import ActionTypes from "../action-types/index"
 
 const defaultState = {
-  appThemeColor: 'red'
+  appThemeColor: 'red',
+  isSideBarCollapsed: true
 };
 
 const appReducer = (state = defaultState, action) => {
@@ -11,6 +12,14 @@ const appReducer = (state = defaultState, action) => {
       return {
         ...state,
         appThemeColor: action.color
+      }
+    }
+
+    case ActionTypes.SET_SIDE_BAR_VISIBILITY: {
+      debugger
+      return {
+        ...state,
+        isSideBarCollapsed: !state.isSideBarCollapsed
       }
     }
 

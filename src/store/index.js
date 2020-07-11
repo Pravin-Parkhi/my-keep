@@ -35,11 +35,16 @@ const store = createStore(
   composedEnhancers
 )
 
-store.subscribe(() => {
-  debugger
+if(localStorage.getItem('state') === null){
   saveState({
-    app: store.getState()
+    app: store.getState().app
   });
-});
+}
+
+store.subscribe(throttle(() => {
+  saveState({
+    app: store.getState().app
+  });
+}));
 
 export default store

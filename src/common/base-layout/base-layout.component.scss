@@ -1,0 +1,17 @@
+@import '../../styles/sizes.scss';
+
+.base-layout-container{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+
+    .content-wrapper{
+        width: 100%;
+        padding-top: $header-height;
+        display: flex;
+
+        .view-wrapper{
+            flex: auto;
+        }
+    }
+}

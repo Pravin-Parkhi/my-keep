@@ -2,40 +2,31 @@
 @import '../../styles/sizes.scss';
 
 .side-bar {
-  position: fixed;
-  height: calc(8 * 60px + 10px);
-  width: 65px;
-  left: 0;
-  top: calc(50vh + #{$header-height}/2);
-  transform: translateY(-50%);
+  padding: 5px 20px 5px 0px;
+  top: $header-height + 8;
+  box-sizing: border-box;
   background: $white-color;
-  border-radius: 0px 5px 5px 0;
-  padding: 5px 10px;
-  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
-
+  height: calc(100vh - #{$header-height - 8});
 
   .side-bar-option {
     text-align: center;
-    padding: 10px 0;
-    border-bottom: 1px solid $line-color;
+    padding: 2px 0 2px 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
-  }
+    text-decoration: none;
+    
+    &:hover {
+      background-color: $icon-background-color;
+      border-bottom-right-radius: 50px;
+      border-top-right-radius: 50px;
+    }
 
-  .page-links {
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .menu-name{
+      margin-left: 20px;
+      color: $primary-color;
+      font-size: 16px;
+    }
   }
-
-  .page-links:hover {
-    background: $background-color1;
-  }
-
 
   .side-bar-option:last-child { 
     border-bottom: none;
@@ -54,7 +45,8 @@
   }
 
   .page-links:hover, .active-page {
-    color: #44a1f4 !important;
     background: rgba(135, 196, 250, 0.3) !important;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
   }
 }

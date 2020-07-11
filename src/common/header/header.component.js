@@ -1,17 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { FaBars, FaSearch, FaCog } from 'react-icons/fa';
+import { setSideBarVisibility } from '../../actions/app';
 
 import IconWrapper from '../icon-wrapper/icon-wrapper.component';
 
 import './header.component.scss'
 
 function Header (props) {
+  const { setSideBarVisibility } = props
+  const handleHamburgerClick = () => {
+    setSideBarVisibility()
+  }
 
   return (
     <div className='header-wrapper'>
       <div className='left-section'>
-        <IconWrapper>
+        <IconWrapper iconClickCallback={handleHamburgerClick}>
           <FaBars />
         </IconWrapper>
       </div>
@@ -36,4 +41,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default (connect(mapStateToProps, {})(Header))
+export default (connect(mapStateToProps, { setSideBarVisibility })(Header))
