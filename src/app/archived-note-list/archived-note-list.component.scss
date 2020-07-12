@@ -1,0 +1,24 @@
+@import '../../styles/colors.scss';
+
+.archived-note-list-container{
+    @mixin section-heading {
+        font-size: 12px;
+        color: #9aa0a6;
+        font-weight: 500;
+        margin-left: 20px;
+        text-transform: uppercase;
+    }
+    @mixin note-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .archived-notes-wrapper{
+        .note-list{
+            @include note-list;
+        }
+        .heading{
+            @include section-heading;
+        }
+    }
+}

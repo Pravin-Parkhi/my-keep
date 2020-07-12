@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
 import ActiveNoteList from '../app/active-note-list/active-note-list.component'
-import ArchivedNoteList from '../app/active-note-list/active-note-list.component'
+import ArchivedNoteList from '../app/archived-note-list/archived-note-list.component'
 import BaseLayout from '../common/base-layout/base-layout.component'
 
 export default () => {
