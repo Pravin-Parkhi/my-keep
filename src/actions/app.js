@@ -11,3 +11,9 @@ export const setSideBarVisibility = () => {
     type: ActionTypes.SET_SIDE_BAR_VISIBILITY
   }
 }
+
+export const getNoteList = () => {
+  return {
+    type: ActionTypes.GET_NOTE_LIST
+  }
+}

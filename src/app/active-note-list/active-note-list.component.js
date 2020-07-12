@@ -7,6 +7,10 @@ import CreateBox from '../../common/create-box/create-box.component'
 import './active-note-list.component.scss'
 
 function ActiveNoteList (props) {
+  const { noteList } = props
+  const activeNoteList = noteList.filter(note => (note.status === 'active'))
+  const pinnedNoteList = noteList.filter(note => note.isPinned)
+
   return (
     <div className='active-note-list-container'>
       <div className='create-box-container'>
@@ -14,47 +18,36 @@ function ActiveNoteList (props) {
           {...props}
         />
       </div>
-      <div className='pinned-notes-wrapper'>
+
+      {(pinnedNoteList && pinnedNoteList.length) ? <div className='pinned-notes-wrapper'>
         <p className='heading'>pinned</p>
         <div className='note-list'>
-          <Note
+          {pinnedNoteList.map(note => <Note
+            key={note.id}
+            note={note}
             {...props}
-          />
-          <Note
-            {...props}
-          />
+          />)}
         </div>
-      </div>
-      <div className='other-notes-wrapper'>
+      </div> : null}
+
+      {(activeNoteList && activeNoteList.length) ? <div className='other-notes-wrapper'>
         <p className='heading'>other</p>
         <div className='note-list'>
-          <Note
+          {activeNoteList.map(note => <Note
+            key={note.id}
+            note={note}
             {...props}
-          />
-          <Note
-            {...props}
-          />
-          <Note
-            {...props}
-          />
-          <Note
-            {...props}
-          />
-          <Note
-            {...props}
-          />
-          <Note
-            {...props}
-          />
+          />)}
         </div>
-      </div>
+      </div> : null}
     </div>
   )
 }
 
 function mapStateToProps (state) {
   return {
-    isDarkMode: state.app.isDarkMode
+    isDarkMode: state.app.isDarkMode,
+    noteList: state.app.noteList
   }
 }
 

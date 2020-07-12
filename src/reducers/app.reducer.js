@@ -1,8 +1,11 @@
 import ActionTypes from "../action-types/index"
+import { MOCK_DATA } from "../mock-data";
 
 const defaultState = {
   isDarkMode: true,
-  isSideBarCollapsed: true
+  isSideBarCollapsed: true,
+
+  noteList: MOCK_DATA
 };
 
 const appReducer = (state = defaultState, action) => {
@@ -16,10 +19,16 @@ const appReducer = (state = defaultState, action) => {
     }
 
     case ActionTypes.SET_SIDE_BAR_VISIBILITY: {
-      debugger
       return {
         ...state,
         isSideBarCollapsed: !state.isSideBarCollapsed
+      }
+    }
+
+    case ActionTypes.GET_NOTE_LIST: {
+      return {
+        ...state,
+        noteList: state.noteList
       }
     }
 
