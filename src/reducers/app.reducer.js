@@ -1,7 +1,7 @@
 import ActionTypes from "../action-types/index"
 
 const defaultState = {
-  isDarkMode: false,
+  isDarkMode: true,
   isSideBarCollapsed: true
 };
 

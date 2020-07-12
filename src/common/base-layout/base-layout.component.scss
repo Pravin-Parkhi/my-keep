@@ -11,6 +11,8 @@
         display: flex;
 
         .view-wrapper{
+            overflow-y: auto;
+            height: calc(100vh - #{$header-height - 8px});
             flex: auto;
         }
     }

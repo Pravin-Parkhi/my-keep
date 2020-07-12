@@ -1,0 +1,45 @@
+@import '../../styles/colors.scss';
+
+.note-wrapper{
+    width: 240px;
+    border-radius: 10px;
+    padding: 15px 10px 5px 15px;
+    border: 1px solid;
+    margin: 16px;
+
+    &:hover{
+        box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 
+        0 1px 3px 1px rgba(60,64,67,0.149);
+        .title-wrapper, .action-wrapper{
+            .pinned-icon, .action-button{
+                visibility: visible;
+            }
+        }
+    }
+    .title-wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .title{
+            margin: 0px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .pinned-icon{
+            visibility: hidden;
+        }
+    }
+    .description{
+        margin: 0px;
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .action-wrapper{
+        display: flex;
+        justify-content: flex-end;
+
+        .action-button{
+            visibility: hidden;
+        }
+    }
+}
