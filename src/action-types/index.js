@@ -5,7 +5,8 @@ const ACTION_TYPES = [
   'SET_SIDE_BAR_VISIBILITY',
 
   'GET_NOTE_LIST',
-  'CREATE_NOTE'
+  'CREATE_NOTE',
+  'UPDATE_NOTE'
 ]
 
 export default zipObject(ACTION_TYPES, ACTION_TYPES)

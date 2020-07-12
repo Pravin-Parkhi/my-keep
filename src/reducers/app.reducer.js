@@ -1,5 +1,6 @@
 import ActionTypes from "../action-types/index"
 import { MOCK_DATA } from "../mock-data";
+import { deepCopy } from "../utils/object";
 
 const defaultState = {
   isDarkMode: true,
@@ -36,6 +37,23 @@ const appReducer = (state = defaultState, action) => {
       return {
         ...state,
         noteList: [...state.noteList, action.note]
+      }
+    }
+
+    case ActionTypes.UPDATE_NOTE: {
+      const updatedNote = action.note
+      let noteListCopy = deepCopy(state.noteList)
+      for(let noteIndx=0; noteIndx<noteListCopy.length; noteIndx++){
+        const noteDetails = noteListCopy[noteIndx]
+        if(noteDetails.id === updatedNote.id){
+          noteListCopy.splice(noteIndx, 1, updatedNote)
+          break
+        }
+      }
+
+      return {
+        ...state,
+        noteList: noteListCopy
       }
     }
 

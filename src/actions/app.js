@@ -19,9 +19,15 @@ export const getNoteList = () => {
 }
 
 export const createNote = (note) => {
-  debugger
   return {
     type: ActionTypes.CREATE_NOTE,
+    note
+  }
+}
+
+export const updateNote = (note) => {
+  return {
+    type: ActionTypes.UPDATE_NOTE,
     note
   }
 }

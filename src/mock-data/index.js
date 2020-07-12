@@ -32,6 +32,6 @@ export const MOCK_DATA = [
         title: 'smallcase',
         description: 'smallcase_5',
         status: 'archived',
-        isPinned: true
+        isPinned: false
     }
 ]

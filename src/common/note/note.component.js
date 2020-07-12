@@ -1,6 +1,8 @@
 import React from 'react'
 import { FaArchive, FaThumbtack } from 'react-icons/fa'
-import { DARK_THEME_TEXT_COLOR, DARK_THEME_BORDER_COLOR, LIGHT_THEME_BORDER_COLOR, LIGHT_THEME_TEXT_COLOR } from '../../constants/variables.constant'
+import { TiPinOutline, TiPin } from 'react-icons/ti'
+import { DARK_THEME_TEXT_COLOR, DARK_THEME_BORDER_COLOR, 
+  LIGHT_THEME_BORDER_COLOR, LIGHT_THEME_TEXT_COLOR } from '../../constants/variables.constant'
 
 import IconWrapper from '../icon-wrapper/icon-wrapper.component'
 
@@ -8,6 +10,16 @@ import './note.component.scss'
 
 export default function Note (props) {
   const { isDarkMode, note } = props
+  const { pinClickCallback, archiveClickCallback } = props
+
+  const handlePinClick = () => {
+    pinClickCallback(note)
+  }
+
+  const handleArchiveClick = () => {
+    archiveClickCallback(note)
+  }
+
   return (
     <div
       className='note-wrapper'
@@ -18,7 +30,9 @@ export default function Note (props) {
             {note.title}
           </p>
           <IconWrapper>
-            <FaThumbtack className='pinned-icon' />
+            {note.isPinned ? 
+              <TiPin className='pinned-icon' onClick={handlePinClick} />
+                : <TiPinOutline className='pinned-icon' onClick={handlePinClick} />}
           </IconWrapper>
       </div>
       <p className='description' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : LIGHT_THEME_TEXT_COLOR}}>
@@ -26,7 +40,7 @@ export default function Note (props) {
       </p>
       <div className='action-wrapper'>
         <IconWrapper>
-          <FaArchive className='action-button' />
+          <FaArchive className='action-button' onClick={handleArchiveClick} />
         </IconWrapper>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createNote } from '../../actions/app'
+import { deepCopy } from '../../utils/object'
+import { createNote, updateNote } from '../../actions/app'
 
 import Note from '../../common/note/note.component'
 import CreateBox from '../../common/create-box/create-box.component'
@@ -9,9 +10,26 @@ import './active-note-list.component.scss'
 
 function ActiveNoteList (props) {
   const { noteList } = props
-  const { createNote } = props
-  const activeNoteList = noteList.filter(note => (note.status === 'active'))
+  const { createNote, updateNote } = props
+  const activeNoteList = noteList.filter(note => (note.status === 'active' && !note.isPinned))
   const pinnedNoteList = noteList.filter(note => note.isPinned)
+
+  const handleUpdateNote = (updatedNote) => {
+    updateNote(updatedNote)
+  }
+
+  const handlePinClick = (note) => {
+    let noteCopy = deepCopy(note)
+    noteCopy.isPinned = !note.isPinned
+    handleUpdateNote(noteCopy)
+  }
+
+  const handleArchiveClick = (note) => {
+    let noteCopy = deepCopy(note)
+    noteCopy.status = 'archive'
+    noteCopy.isPinned = false
+    handleUpdateNote(noteCopy)
+  }
 
   return (
     <div className='active-note-list-container'>
@@ -26,9 +44,11 @@ function ActiveNoteList (props) {
         <p className='heading'>pinned</p>
         <div className='note-list'>
           {pinnedNoteList.map(note => <Note
-            key={note.id}
-            note={note}
             {...props}
+            note={note}
+            key={note.id}
+            archiveClickCallback={(note) => handleArchiveClick(note)}
+            pinClickCallback={(note) => handlePinClick(note)}
           />)}
         </div>
       </div> : null}
@@ -37,9 +57,11 @@ function ActiveNoteList (props) {
         <p className='heading'>other</p>
         <div className='note-list'>
           {activeNoteList.map(note => <Note
-            key={note.id}
-            note={note}
             {...props}
+            note={note}
+            key={note.id}
+            archiveClickCallback={(note) => handleArchiveClick(note)}
+            pinClickCallback={(note) => handlePinClick(note)}
           />)}
         </div>
       </div> : null}
@@ -54,4 +76,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default (connect(mapStateToProps, {createNote})(ActiveNoteList))
+export default (connect(mapStateToProps, { createNote, updateNote })(ActiveNoteList))
