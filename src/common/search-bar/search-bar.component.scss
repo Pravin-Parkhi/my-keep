@@ -17,6 +17,7 @@
         background-color: transparent;
         
         &:focus{
+            outline: none;
             background-color: $white-color;
             .search-bar-wrapper{
                 background-color: $white-color !important;

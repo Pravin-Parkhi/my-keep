@@ -1,13 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import './active-note-list.component.scss'
+
 import Note from '../../common/note/note.component'
+import CreateBox from '../../common/create-box/create-box.component'
+
+import './active-note-list.component.scss'
 
 function ActiveNoteList (props) {
   return (
     <div className='active-note-list-container'>
       <div className='create-box-container'>
-
+        <CreateBox
+          {...props}
+        />
       </div>
       <div className='pinned-notes-wrapper'>
         <p className='heading'>pinned</p>

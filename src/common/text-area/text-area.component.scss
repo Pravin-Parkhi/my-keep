@@ -1,0 +1,19 @@
+.text-area-wrapper{
+    width: 100%;
+    textarea{
+        width: 100%;
+        overflow:hidden;
+        padding:10px;
+        font-size:14px;
+        display:block;
+        border: 0px;
+        color: #E8EAED;
+        resize: none;
+        background-color: transparent;
+
+        &:active, &:focus{
+            border: 0px;
+            outline: none;
+        }
+      }
+}
