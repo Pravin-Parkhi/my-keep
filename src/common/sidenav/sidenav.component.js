@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { FaArchive, FaRegLightbulb } from 'react-icons/fa';
+import { FaRegLightbulb } from 'react-icons/fa'
+import { MdArchive } from 'react-icons/md'
 import { 
     DARK_THEME_BACKGROUND_COLOR, 
     LIGHT_THEME_BACKGROUND_COLOR,
@@ -39,7 +40,7 @@ export default function SideBar (props) {
       </NavLink>
       <NavLink className='side-bar-option' activeClassName='active-page' to='/archived-notes'>
         <IconWrapper>
-          <FaArchive />
+          <MdArchive />
         </IconWrapper>
         <p
             className='menu-name'

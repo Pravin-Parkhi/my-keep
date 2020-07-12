@@ -1,15 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { FaArchive, FaThumbtack } from 'react-icons/fa';
+import { MdArchive } from 'react-icons/md'
+import { deepCopy } from '../../utils/object';
+import { getUuidv4 } from '../../utils/misc';
 import { DARK_THEME_BORDER_COLOR, LIGHT_THEME_BORDER_COLOR,
     DARK_THEME_TEXT_COLOR, LIGHT_THEME_TEXT_COLOR } from '../../constants/variables.constant';
 
 import TextArea from '../text-area/text-area.component';
 import IconWrapper from '../icon-wrapper/icon-wrapper.component';
 
-
 import './create-box.component.scss'
-import { deepCopy } from '../../utils/object';
-import { getUuidv4 } from '../../utils/misc';
+
 
 export default function CreateBox (props) {
     const wrapperRef = useRef(null);
@@ -77,7 +78,7 @@ export default function CreateBox (props) {
                 <p className='placeholder-text' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : LIGHT_THEME_TEXT_COLOR}}>Take a note...</p>
                 <div className='action-button-wrapper'>
                     <IconWrapper>
-                        <FaArchive />
+                        <MdArchive />
                     </IconWrapper>
                     <IconWrapper>
                         <FaThumbtack />
@@ -111,7 +112,7 @@ export default function CreateBox (props) {
                 </div>
                 <div className='action-button-wrapper'>
                     <IconWrapper>
-                        <FaArchive />
+                        <MdArchive />
                     </IconWrapper>
                     <IconWrapper>
                         <FaThumbtack />

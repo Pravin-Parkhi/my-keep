@@ -6,6 +6,10 @@
     padding: 4px 8px;
     border-radius: 10px;
     background-color: #f1f3f43d;
+
+    &:focus-within{
+        background-color: $white-color;
+    }
     
     input[type=text] {
         width: 100%;
@@ -18,10 +22,6 @@
         
         &:focus{
             outline: none;
-            background-color: $white-color;
-            .search-bar-wrapper{
-                background-color: $white-color !important;
-            }
         }
     }
 }
