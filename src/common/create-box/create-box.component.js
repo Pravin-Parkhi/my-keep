@@ -8,16 +8,31 @@ import IconWrapper from '../icon-wrapper/icon-wrapper.component';
 
 
 import './create-box.component.scss'
+import { deepCopy } from '../../utils/object';
+import { getUuidv4 } from '../../utils/misc';
 
 export default function CreateBox (props) {
     const wrapperRef = useRef(null);
+    const [values, setValues] = useState({
+        title: '',
+        description: ''
+    })
     const { isDarkMode } = props
+    const { handleCreateNote } = props
 
     const [showExpandedView, setExpandedView] = useState(false)
 
-    const handleTitleChange = (event) => {}
+    const handleTitleChange = (title) => {
+        let valuesCopy = deepCopy(values)
+        valuesCopy.title = title
+        setValues(valuesCopy)
+    }
 
-    const handleDescChange = (event) => {}
+    const handleDescChange = (description) => {
+        let valuesCopy = deepCopy(values)
+        valuesCopy.description = description
+        setValues(valuesCopy)
+    }
 
     const handleExpandCreateBox = () => {
         if(!showExpandedView){
@@ -25,14 +40,35 @@ export default function CreateBox (props) {
         }
     }
 
-    const handleClickOutside = event => {
+    const createNote = () => {
+        const params = {
+            id: getUuidv4(),
+            isPinned: false,
+            status: 'active',
+            title: values.title,
+            description: values.description
+        }
+        setValues({
+            title: '',
+            description: '',
+        })
+        handleCreateNote(params)
+    }
+
+    const handleOutsideClick = event => {
         if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
             setExpandedView(false);
+            if(values.title.length || values.description.length){
+                createNote()
+            }
         }
     }
 
     const handleCloseClick = () => {
-        setExpandedView(false)
+        setExpandedView(false);
+        if(values.title.length || values.description.length){
+            createNote()
+        }
     }
 
     const renderCollapsedCreateBoxView = () => {
@@ -58,7 +94,8 @@ export default function CreateBox (props) {
                     <TextArea
                         rows='1'
                         placeholder='Title'
-                        handleChangeCallback={handleTitleChange}
+                        value={values.title}
+                        handleChangeCallback={(value)=> handleTitleChange(value)}
                     />
                     <IconWrapper>
                         <FaThumbtack />
@@ -68,7 +105,8 @@ export default function CreateBox (props) {
                     <TextArea
                         rows='1'
                         placeholder='Take a note...'
-                        handleChangeCallback={handleDescChange}
+                        value={values.description}
+                        handleChangeCallback={(value)=> handleDescChange(value)}
                     />
                 </div>
                 <div className='action-button-wrapper'>
@@ -91,9 +129,9 @@ export default function CreateBox (props) {
     }
 
     useEffect(() => {
-        document.addEventListener("click", handleClickOutside, false);
+        document.addEventListener("click", handleOutsideClick, false);
         return () => {
-          document.removeEventListener("click", handleClickOutside, false);
+          document.removeEventListener("click", handleOutsideClick, false);
         };
     }, []);
 

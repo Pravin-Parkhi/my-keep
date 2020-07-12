@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { createNote } from '../../actions/app'
 
 import Note from '../../common/note/note.component'
 import CreateBox from '../../common/create-box/create-box.component'
@@ -8,6 +9,7 @@ import './active-note-list.component.scss'
 
 function ActiveNoteList (props) {
   const { noteList } = props
+  const { createNote } = props
   const activeNoteList = noteList.filter(note => (note.status === 'active'))
   const pinnedNoteList = noteList.filter(note => note.isPinned)
 
@@ -15,6 +17,7 @@ function ActiveNoteList (props) {
     <div className='active-note-list-container'>
       <div className='create-box-container'>
         <CreateBox
+          handleCreateNote={createNote}
           {...props}
         />
       </div>
@@ -51,4 +54,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default (connect(mapStateToProps, {})(ActiveNoteList))
+export default (connect(mapStateToProps, {createNote})(ActiveNoteList))

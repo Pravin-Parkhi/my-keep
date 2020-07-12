@@ -32,6 +32,13 @@ const appReducer = (state = defaultState, action) => {
       }
     }
 
+    case ActionTypes.CREATE_NOTE: {
+      return {
+        ...state,
+        noteList: [...state.noteList, action.note]
+      }
+    }
+
     default:
       return state
   }

@@ -4,15 +4,14 @@ import './text-area.component.scss'
 
 export default function TextArea ({
     rows,
+    value,
     placeholder,
     handleChangeCallback
 }) {
     const textareaRef = useRef(null)
-    const [value, setValue] = useState('')
 
     const handleChange = (event) => {
-        // handleChangeCallback(event.target.value)
-        setValue(event.target.value)
+        handleChangeCallback(event.target.value)
     }
   
     useEffect(() => {

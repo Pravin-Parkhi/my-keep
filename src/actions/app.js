@@ -17,3 +17,11 @@ export const getNoteList = () => {
     type: ActionTypes.GET_NOTE_LIST
   }
 }
+
+export const createNote = (note) => {
+  debugger
+  return {
+    type: ActionTypes.CREATE_NOTE,
+    note
+  }
+}
