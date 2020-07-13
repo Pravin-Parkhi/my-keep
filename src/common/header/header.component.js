@@ -1,17 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { IconContext } from "react-icons"
 import { withRouter } from 'react-router-dom'
-import { FaBars, FaSearch, FaCog } from 'react-icons/fa';
-import { getFilteredNoteList, clearSearchQuery } from '../../actions/app';
-import { DARK_THEME_BACKGROUND_COLOR, LIGHT_THEME_BACKGROUND_COLOR } from '../../constants/variables.constant';
+import { FaBars, FaSearch, FaCog } from 'react-icons/fa'
+import { WiMoonAltWaxingGibbous1 } from 'react-icons/wi'
+import { getFilteredNoteList, clearSearchQuery, setAppTheme } from '../../actions/app'
+import { DARK_THEME_BACKGROUND_COLOR, LIGHT_THEME_BACKGROUND_COLOR } from '../../constants/variables.constant'
 
-import SearchBar from '../search-bar/search-bar.component';
-import IconWrapper from '../icon-wrapper/icon-wrapper.component';
+import Switch from '../switch/switch.component'
+import SearchBar from '../search-bar/search-bar.component'
+import IconWrapper from '../icon-wrapper/icon-wrapper.component'
 
 import './header.component.scss'
 
 function Header (props) {
-  const { setSideBarVisibilityCallback, isDarkMode, globalSearchQuery, getFilteredNoteList, clearSearchQuery } = props
+  const { setSideBarVisibilityCallback, isDarkMode, globalSearchQuery, 
+    getFilteredNoteList, clearSearchQuery, setAppTheme } = props
   
   const handleHamburgerClick = () => {
     setSideBarVisibilityCallback()
@@ -33,6 +37,10 @@ function Header (props) {
     })
   }
 
+  const handleSwitchChange = () => {
+    setAppTheme()
+  }
+
   return (
     <div className='header-wrapper' style={{backgroundColor: isDarkMode ? DARK_THEME_BACKGROUND_COLOR : LIGHT_THEME_BACKGROUND_COLOR}}>
       <div className='left-section'>
@@ -48,12 +56,15 @@ function Header (props) {
         />
       </div>
       <div className='right-section'>
-        <IconWrapper>
+        {/* <IconWrapper>
           <FaSearch />
-        </IconWrapper>
-        <IconWrapper>
-          <FaCog />
-        </IconWrapper>
+        </IconWrapper> */}
+        <div className='switch-wrapper'>
+          <IconContext.Provider value={{ color: '#939393', size: 30 }}>
+            <WiMoonAltWaxingGibbous1 />
+          </IconContext.Provider>
+          <Switch {...props} switchChangeCallback={handleSwitchChange} />
+        </div>
       </div>
     </div>
   )
@@ -66,4 +77,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { getFilteredNoteList, clearSearchQuery })(Header))
+export default withRouter(connect(mapStateToProps, { getFilteredNoteList, clearSearchQuery, setAppTheme })(Header))

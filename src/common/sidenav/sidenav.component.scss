@@ -8,6 +8,7 @@
   height: calc(100vh - #{$header-height - 8});
 
   .side-bar-option {
+    height: 50px;
     text-align: center;
     padding: 2px 0 2px 20px;
     display: flex;

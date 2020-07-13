@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react'
+import { DARK_THEME_TEXT_COLOR, DARK_THEME_OVERLAY_BACKGROUND_COLOR } from '../../constants/variables.constant'
 
 import './text-area.component.scss'
 
@@ -6,6 +7,7 @@ export default function TextArea ({
     rows,
     value,
     autofocus,
+    isDarkMode,
     placeholder,
     handleChangeCallback
 }) {
@@ -23,14 +25,15 @@ export default function TextArea ({
   
     return (
         <div className='text-area-wrapper'>
-        <textarea
-            ref={textareaRef}
-            value={value}
-            rows={rows}
-            autoFocus={autofocus}
-            placeholder={placeholder}
-            onChange={handleChange}
-        />
+            <textarea
+                ref={textareaRef}
+                value={value}
+                rows={rows}
+                autoFocus={autofocus}
+                placeholder={placeholder}
+                onChange={handleChange}
+                style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_OVERLAY_BACKGROUND_COLOR}}
+            />
         </div>
     )
 }

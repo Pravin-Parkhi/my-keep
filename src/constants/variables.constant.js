@@ -9,3 +9,6 @@ export const LIGHT_THEME_BORDER_COLOR = '#E0E0E0'
 
 export const DARK_THEME_OVERLAY_BACKGROUND_COLOR = '#202124'
 export const LIGHT_THEME_OVERLAY_BACKGROUND_COLOR = '#E5E5E5'
+
+export const DARK_THEME_BOX_SHADOW = '0 1px 2px 0 rgba(0,0,0,0.6), 0 2px 6px 2px rgba(0,0,0,0.302)'
+export const LIGHT_THEME_BOX_SHADOW = '0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149)'

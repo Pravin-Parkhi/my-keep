@@ -23,6 +23,10 @@
         width: 30%;
         display: flex;
         justify-content: flex-end;
+        .switch-wrapper{
+            display: flex;
+            align-items: center;
+        }
         .icon-wrapper{
             &:last-child{
                 margin-left: 10px;

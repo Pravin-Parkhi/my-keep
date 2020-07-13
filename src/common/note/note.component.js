@@ -39,9 +39,9 @@ export default function Note (props) {
       onClick={handleNoteClick}
     >
       <div className='title-wrapper'>
-          <p className='title' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : LIGHT_THEME_TEXT_COLOR}}>
+          {note.title.length ? <p className='title' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : LIGHT_THEME_TEXT_COLOR}}>
             {note.title}
-          </p>
+          </p> : null}
           <IconWrapper>
             {note.isPinned ? 
               <TiPin className='pinned-icon' onClick={handlePinClick} />

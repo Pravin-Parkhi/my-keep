@@ -59,6 +59,7 @@ export default function NoteModifier (props) {
     return (
         <Modal {...props} backdropClickCallback={handleCloseClick}>
             <CreateBox
+                {...props}
                 values={activeNotevalues}
                 closeClickCallback={handleCloseClick}
                 titleChangeCallback={(title) => handleTitleChange(title)}

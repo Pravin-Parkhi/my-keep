@@ -5,19 +5,17 @@
         display: flex;
         justify-content: space-between;
     }
-    .description-wrapper{
-        
-    }
     .action-button-wrapper{
         display: flex;
         position: relative;
         align-items: center;
         .close-btn{
-            color: #E8EAED;
             position: absolute;
             right: 0;
-            padding: 10px;
+            padding: 6px 15px;
             border-radius: 10px;
+            font-family: OpenSansRegular;
+            font-weight: 500;
             &:hover{
                 cursor: pointer;
                 background-color: $icon-background-color;

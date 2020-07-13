@@ -40,8 +40,6 @@ function FilteredNoteList (props) {
     fetchFilteredNotes()
   }, [globalSearchQuery])
 
-  console.log(filteredNoteList)
-
   return (
     <div className='filtered-note-list-container'>
 

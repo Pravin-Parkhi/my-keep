@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
-import React, { useState } from 'react'
+import React from 'react'
 import Header from '../header/header.component'
 import SideNav from '../sidenav/sidenav.component'
 import { setSideBarVisibility } from '../../actions/app'
-import { IconContext } from "react-icons"
+import { IconContext } from 'react-icons'
 import { DARK_THEME_BACKGROUND_COLOR, LIGHT_THEME_BACKGROUND_COLOR } from '../../constants/variables.constant'
 
 import './base-layout.component.scss'
