@@ -31,3 +31,16 @@ export const updateNote = (note) => {
     note
   }
 }
+
+export const getFilteredNoteList = (searchQuery) => {
+  return {
+    type: ActionTypes.GET_FILTERED_NOTE_LIST,
+    searchQuery
+  }
+}
+
+export const clearSearchQuery = () => {
+  return {
+    type: ActionTypes.CLEAR_SEARCH_QUERY
+  }
+}

@@ -13,7 +13,7 @@ import './create-box.component.scss'
 
 
 export default function CreateBox (props) {
-    const wrapperRef = useRef(null);
+    const wrapperRef = useRef(null)
     const [values, setValues] = useState({
         title: '',
         description: ''

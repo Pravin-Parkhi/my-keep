@@ -1,10 +1,13 @@
 import ActionTypes from "../action-types/index"
 import { MOCK_DATA } from "../mock-data";
 import { deepCopy } from "../utils/object";
+import { executeMagicalSearch } from "../utils/misc";
 
 const defaultState = {
   isDarkMode: true,
   isSideBarCollapsed: true,
+  globalSearchQuery: '',
+  filteredNoteList: [],
 
   noteList: MOCK_DATA
 };
@@ -54,6 +57,24 @@ const appReducer = (state = defaultState, action) => {
       return {
         ...state,
         noteList: noteListCopy
+      }
+    }
+
+    case ActionTypes.GET_FILTERED_NOTE_LIST: {
+      const searchQuery = action.searchQuery
+      const filteredSearchResult = executeMagicalSearch(state.noteList, searchQuery)
+      return {
+        ...state,
+        globalSearchQuery: searchQuery,
+        filteredNoteList: filteredSearchResult
+      }
+    }
+
+    case ActionTypes.CLEAR_SEARCH_QUERY: {
+      return {
+        ...state,
+        globalSearchQuery: '',
+        filteredNoteList: []
       }
     }
 
