@@ -34,7 +34,7 @@ function ActiveNoteList (props) {
 
   const handleArchiveClick = (note) => {
     let noteCopy = deepCopy(note)
-    noteCopy.status = 'archive'
+    noteCopy.status = 'archived'
     noteCopy.isPinned = false
     handleUpdateNote(noteCopy)
   }
@@ -74,7 +74,7 @@ function ActiveNoteList (props) {
       </div> : null}
 
       {(activeNoteList && activeNoteList.length) ? <div className='other-notes-wrapper'>
-        <p className='heading'>other</p>
+        {(pinnedNoteList && pinnedNoteList.length) ? <p className='heading'>other</p> : null}
         <div className='note-list'>
           {activeNoteList.map(note => <Note
             {...props}
@@ -87,7 +87,7 @@ function ActiveNoteList (props) {
         </div>
       </div> : null}
 
-      {(noteList && !noteList.length) 
+      {(!pinnedNoteList.length && !activeNoteList.length) 
         ? <EmptyList
           emptyStateIcon={<FaRegLightbulb />}
           emptyStateText='Your active notes appear here'

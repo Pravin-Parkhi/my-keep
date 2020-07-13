@@ -26,7 +26,7 @@ function FilteredNoteList (props) {
 
   const handleArchiveClick = (note) => {
     let noteCopy = deepCopy(note)
-    noteCopy.status = 'archive'
+    noteCopy.status = 'archived'
     noteCopy.isPinned = false
     handleUpdateNote(noteCopy)
   }

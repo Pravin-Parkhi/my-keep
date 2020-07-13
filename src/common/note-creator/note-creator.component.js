@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { FaThumbtack } from 'react-icons/fa'
+import { TiPinOutline } from 'react-icons/ti'
 import { MdArchive } from 'react-icons/md'
 import { deepCopy } from '../../utils/object'
 import { getUuidv4 } from '../../utils/misc'
@@ -80,7 +80,7 @@ export default function NoteCreator (props) {
                         <MdArchive />
                     </IconWrapper>
                     <IconWrapper>
-                        <FaThumbtack />
+                        <TiPinOutline />
                     </IconWrapper>
                 </div>
             </div>
