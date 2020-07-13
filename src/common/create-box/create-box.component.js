@@ -9,17 +9,20 @@ import './create-box.component.scss'
 
 export default function CreateBox (props) {
     const { values } = props
-    const { titleChangeCallback, descriptionChangeCallback, closeClickCallback } = props
+    const { titleChangeCallback, descriptionChangeCallback, closeClickCallback,
+        pinClickedCallback, archiveClickCallback } = props
 
     const handleCloseClick = () => {
         closeClickCallback()
     }
 
-    console.log(values)
+    const handlePinClick = () => {
+        pinClickedCallback(values)
+    }
 
-    const handlePinClick = () => {}
-
-    const handleArchiveClick = () => {}
+    const handleArchiveClick = () => {
+        archiveClickCallback(values)
+    }
 
     return (
         <div className='expanded-view'>
@@ -45,7 +48,9 @@ export default function CreateBox (props) {
             </div>
             <div className='action-button-wrapper'>
                 <IconWrapper>
-                    {(values && values.status === 'archived') ? <MdUnarchive /> : <MdArchive />}
+                    {(values && values.status === 'archived') 
+                        ? <MdUnarchive onClick={handleArchiveClick} /> 
+                            : <MdArchive onClick={handleArchiveClick} />}
                 </IconWrapper>
                 <div className='close-btn' onClick={handleCloseClick}>Close</div>
             </div>

@@ -23,20 +23,31 @@ export default function NoteModifier (props) {
         setActiveNoteValues(valuesCopy)
     }
 
-    const updateNote = () => {
-        const params = {
-            id: activeNotevalues.id,
-            isPinned: activeNotevalues.isPinned,
-            status: activeNotevalues.status,
-            title: activeNotevalues.title,
-            description: activeNotevalues.description
+    const handlePinClick = () => {
+        let valuesCopy = deepCopy(activeNotevalues)
+        valuesCopy.isPinned = !valuesCopy.isPinned
+        setActiveNoteValues(valuesCopy)
+        updateNote(valuesCopy)
+    }
+
+    const handleArchiveClick = () => {
+        let valuesCopy = deepCopy(activeNotevalues)
+        if(valuesCopy.status === 'active'){
+            valuesCopy.status = 'archived'
+        } else {
+            valuesCopy.status = 'active'
         }
-        updateNoteCallback(params)
+        setActiveNoteValues(valuesCopy)
+        updateNote(valuesCopy)
+    }
+
+    const updateNote = (note) => {
+        updateNoteCallback(note)
         setActiveNoteValues(undefined)
     }
 
     const handleCloseClick = () => {
-        updateNote()
+        updateNote(activeNotevalues)
     }
 
     useEffect(() => {
@@ -52,6 +63,8 @@ export default function NoteModifier (props) {
                 closeClickCallback={handleCloseClick}
                 titleChangeCallback={(title) => handleTitleChange(title)}
                 descriptionChangeCallback={(description) => handleDescChange(description)}
+                pinClickedCallback={handlePinClick}
+                archiveClickCallback={handleArchiveClick}
             />
         </Modal>
     )
