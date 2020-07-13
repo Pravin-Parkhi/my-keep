@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { deepCopy } from '../../utils/object'
 import { FaRegLightbulb } from 'react-icons/fa'
-import { createNote, updateNote } from '../../actions/app'
+import { createNote, updateNote, deleteNote } from '../../actions/app'
 
 import Note from '../../common/note/note.component'
 import NoteCreator from '../../common/note-creator/note-creator.component'
@@ -13,7 +13,7 @@ import EmptyList from '../../common/empty-list/empty-list.component'
 
 function ActiveNoteList (props) {
   const { noteList } = props
-  const { createNote, updateNote } = props
+  const { createNote, updateNote, deleteNote } = props
   const [activeNote, setActiveNote] = useState(undefined)
   const [showNoteModifier, setNoteModifier] = useState(false)
   const activeNoteList = noteList.filter(note => (note.status === 'active' && !note.isPinned))
@@ -37,6 +37,10 @@ function ActiveNoteList (props) {
     noteCopy.status = 'archived'
     noteCopy.isPinned = false
     handleUpdateNote(noteCopy)
+  }
+
+  const handleTrashClick = (note) => {
+    deleteNote(note)
   }
 
   const handleNoteClick = (note) => {
@@ -69,6 +73,7 @@ function ActiveNoteList (props) {
             archiveClickCallback={(note) => handleArchiveClick(note)}
             pinClickCallback={(note) => handlePinClick(note)}
             noteClickCallback={(note) => handleNoteClick(note)}
+            trashNoteCallback={(note) => handleTrashClick(note)}
           />)}
         </div>
       </div> : null}
@@ -83,6 +88,7 @@ function ActiveNoteList (props) {
             archiveClickCallback={(note) => handleArchiveClick(note)}
             pinClickCallback={(note) => handlePinClick(note)}
             noteClickCallback={(note) => handleNoteClick(note)}
+            trashNoteCallback={(note) => handleTrashClick(note)}
           />)}
         </div>
       </div> : null}
@@ -111,4 +117,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default (connect(mapStateToProps, { createNote, updateNote })(ActiveNoteList))
+export default (connect(mapStateToProps, { createNote, updateNote, deleteNote })(ActiveNoteList))

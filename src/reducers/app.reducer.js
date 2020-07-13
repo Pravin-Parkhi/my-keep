@@ -60,6 +60,23 @@ const appReducer = (state = defaultState, action) => {
       }
     }
 
+    case ActionTypes.DELETE_NOTE: {
+      const noteToBeDeleted = action.note
+      let noteListCopy = deepCopy(state.noteList)
+      for(let noteIndx=0; noteIndx<noteListCopy.length; noteIndx++){
+        const noteDetails = noteListCopy[noteIndx]
+        if(noteDetails.id === noteToBeDeleted.id){
+          noteListCopy.splice(noteIndx, 1)
+          break
+        }
+      }
+
+      return {
+        ...state,
+        noteList: noteListCopy
+      }
+    }
+
     case ActionTypes.GET_FILTERED_NOTE_LIST: {
       const searchQuery = action.searchQuery
       const filteredSearchResult = executeMagicalSearch(state.noteList, searchQuery)

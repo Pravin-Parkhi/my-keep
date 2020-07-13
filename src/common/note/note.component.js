@@ -1,6 +1,7 @@
 import React from 'react'
 import { MdArchive, MdUnarchive } from 'react-icons/md'
 import { TiPinOutline, TiPin } from 'react-icons/ti'
+import { FaRegTrashAlt } from 'react-icons/fa'
 import { DARK_THEME_TEXT_COLOR, DARK_THEME_BORDER_COLOR, 
   LIGHT_THEME_BORDER_COLOR, DARK_THEME_BACKGROUND_COLOR } from '../../constants/variables.constant'
 
@@ -10,7 +11,8 @@ import './note.component.scss'
 
 export default function Note (props) {
   const { isDarkMode, note } = props
-  const { pinClickCallback, archiveClickCallback, unArchiveNoteCallback, noteClickCallback } = props
+  const { pinClickCallback, archiveClickCallback, unArchiveNoteCallback, 
+    noteClickCallback, trashNoteCallback } = props
   const isArchived = note.status === 'archived'
 
   const handlePinClick = (event) => {
@@ -30,6 +32,11 @@ export default function Note (props) {
 
   const handleNoteClick = () => {
     noteClickCallback(note)
+  }
+
+  const handleTrashClick = (event) => {
+    event.stopPropagation()
+    trashNoteCallback(note)
   }
 
   return (
@@ -55,6 +62,9 @@ export default function Note (props) {
         <IconWrapper>
           {isArchived ? <MdUnarchive className='action-button' onClick={handleUnArchiveClick} />
             : <MdArchive className='action-button' onClick={handleArchiveClick} />}
+        </IconWrapper>
+        <IconWrapper>
+          <FaRegTrashAlt className='action-button' onClick={handleTrashClick} />
         </IconWrapper>
       </div>
     </div>

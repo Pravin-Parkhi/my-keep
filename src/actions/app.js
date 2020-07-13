@@ -32,6 +32,13 @@ export const updateNote = (note) => {
   }
 }
 
+export const deleteNote = (note) => {
+  return {
+    type: ActionTypes.DELETE_NOTE,
+    note
+  }
+}
+
 export const getFilteredNoteList = (searchQuery) => {
   return {
     type: ActionTypes.GET_FILTERED_NOTE_LIST,
