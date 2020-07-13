@@ -5,9 +5,11 @@ import useDebounce from '../../hooks/useDebounce'
 import IconWrapper from '../icon-wrapper/icon-wrapper.component'
 
 import './search-bar.component.scss'
+import { DARK_THEME_TEXT_COLOR, DARK_THEME_OVERLAY_BACKGROUND_COLOR, DARK_THEME_SEARCH_BAR_BACKGROUND_COLOR, LIGHT_THEME_SEARCH_BAR_BACKGROUND_COLOR } from '../../constants/variables.constant';
 
 export default function SearchBar (props) {
   const wrapperRef = useRef(null)
+  const { isDarkMode } = props
   const { searchNoteCallback, persistedSearchQuery, clearFilteredResultsCallback } = props
   const [searchQuery, setSearchQuery] = useState(persistedSearchQuery || '')
   const debouncedSearchQuery = useDebounce(searchQuery, 500)
@@ -47,7 +49,13 @@ export default function SearchBar (props) {
   },[debouncedSearchQuery]);
 
   return (
-    <div className='search-bar-wrapper'>
+    <div
+      className='search-bar-wrapper'
+      style={{
+        color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_OVERLAY_BACKGROUND_COLOR,
+        backgroundColor: isDarkMode ? DARK_THEME_SEARCH_BAR_BACKGROUND_COLOR : LIGHT_THEME_SEARCH_BAR_BACKGROUND_COLOR
+      }}
+    >
       <IconWrapper>
         <FaSearch />
       </IconWrapper>
@@ -57,6 +65,10 @@ export default function SearchBar (props) {
         value={searchQuery}
         onChange={handleChange}
         ref={wrapperRef}
+        style={{
+          color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_OVERLAY_BACKGROUND_COLOR,
+          // backgroundColor: isDarkMode ? DARK_THEME_SEARCH_BAR_BACKGROUND_COLOR : LIGHT_THEME_SEARCH_BAR_BACKGROUND_COLOR
+        }}
       />
       <IconWrapper>
         {searchQuery.length 

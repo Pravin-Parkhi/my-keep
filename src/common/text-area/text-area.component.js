@@ -18,9 +18,9 @@ export default function TextArea ({
     }
   
     useEffect(() => {
-        textareaRef.current.style.height = "0px";
+        textareaRef.current.style.height = '0px';
         const scrollHeight = textareaRef.current.scrollHeight;
-        textareaRef.current.style.height = (scrollHeight - 14) + "px";
+        textareaRef.current.style.height = (scrollHeight - 14) + 'px';
     }, [value]);
   
     return (

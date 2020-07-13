@@ -50,6 +50,7 @@ function Header (props) {
       </div>
       <div className='middle-section'>
         <SearchBar
+          {...props}
           persistedSearchQuery={globalSearchQuery}
           searchNoteCallback={(searchQuery)=> handleSearchNote(searchQuery)}
           clearFilteredResultsCallback={handleClearSearchResults}

@@ -12,3 +12,6 @@ export const LIGHT_THEME_OVERLAY_BACKGROUND_COLOR = '#E5E5E5'
 
 export const DARK_THEME_BOX_SHADOW = '0 1px 2px 0 rgba(0,0,0,0.6), 0 2px 6px 2px rgba(0,0,0,0.302)'
 export const LIGHT_THEME_BOX_SHADOW = '0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149)'
+
+export const LIGHT_THEME_SEARCH_BAR_BACKGROUND_COLOR = '#f1f3f4'
+export const DARK_THEME_SEARCH_BAR_BACKGROUND_COLOR = '#f1f3f43d'
