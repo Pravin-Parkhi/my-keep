@@ -21,7 +21,7 @@ export default function CreateBox (props) {
                 <TextArea
                     rows='1'
                     placeholder='Title'
-                    value={values.title}
+                    value={values ? values.title : ''}
                     handleChangeCallback={(value)=> titleChangeCallback(value)}
                 />
                 <IconWrapper>
@@ -33,7 +33,7 @@ export default function CreateBox (props) {
                     rows='1'
                     autofocus
                     placeholder='Take a note...'
-                    value={values.description}
+                    value={values ? values.description : ''}
                     handleChangeCallback={(value)=> descriptionChangeCallback(value)}
                 />
             </div>

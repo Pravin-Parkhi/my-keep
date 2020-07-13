@@ -10,7 +10,7 @@ import './note.component.scss'
 
 export default function Note (props) {
   const { isDarkMode, note } = props
-  const { pinClickCallback, archiveClickCallback, unArchiveNoteCallback } = props
+  const { pinClickCallback, archiveClickCallback, unArchiveNoteCallback, noteClickCallback } = props
   const isArchived = note.status === 'archived'
 
   const handlePinClick = () => {
@@ -25,10 +25,15 @@ export default function Note (props) {
     unArchiveNoteCallback(note)
   }
 
+  const handleNoteClick = () => {
+    noteClickCallback(note)
+  }
+
   return (
     <div
       className='note-wrapper'
       style={{color: isDarkMode ? DARK_THEME_BORDER_COLOR : LIGHT_THEME_BORDER_COLOR}}
+      onClick={handleNoteClick}
     >
       <div className='title-wrapper'>
           <p className='title' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : LIGHT_THEME_TEXT_COLOR}}>
