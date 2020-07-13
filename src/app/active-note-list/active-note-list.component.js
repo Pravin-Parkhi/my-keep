@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { deepCopy } from '../../utils/object'
+import { FaRegLightbulb } from 'react-icons/fa'
 import { createNote, updateNote } from '../../actions/app'
 
 import Note from '../../common/note/note.component'
 import NoteCreator from '../../common/note-creator/note-creator.component'
+import NoteModifier from '../../common/note-modifier/note-modifier.component'
 
 import './active-note-list.component.scss'
-import NoteModifier from '../../common/note-modifier/note-modifier.component'
+import EmptyList from '../../common/empty-list/empty-list.component'
 
 function ActiveNoteList (props) {
   const { noteList } = props
@@ -19,6 +21,9 @@ function ActiveNoteList (props) {
 
   const handleUpdateNote = (updatedNote) => {
     updateNote(updatedNote)
+    if(showNoteModifier){
+      toggleNoteModifier()
+    }
   }
 
   const handlePinClick = (note) => {
@@ -82,11 +87,19 @@ function ActiveNoteList (props) {
         </div>
       </div> : null}
 
-      <NoteModifier
+      {(noteList && !noteList.length) 
+        ? <EmptyList
+          emptyStateIcon={<FaRegLightbulb />}
+          emptyStateText='Your active notes appear here'
+        /> 
+          : null}
+
+      {showNoteModifier && <NoteModifier
         {...props}
         show={showNoteModifier}
         activeNote={activeNote}
-      />
+        updateNoteCallback={(note) => handleUpdateNote(note)}
+      />}
     </div>
   )
 }

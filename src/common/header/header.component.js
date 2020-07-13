@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { FaBars, FaSearch, FaCog } from 'react-icons/fa';
-import { setSideBarVisibility, getFilteredNoteList, clearSearchQuery } from '../../actions/app';
+import { getFilteredNoteList, clearSearchQuery } from '../../actions/app';
 import { DARK_THEME_BACKGROUND_COLOR, LIGHT_THEME_BACKGROUND_COLOR } from '../../constants/variables.constant';
 
 import SearchBar from '../search-bar/search-bar.component';

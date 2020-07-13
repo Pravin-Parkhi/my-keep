@@ -5,7 +5,11 @@ import { DARK_THEME_OVERLAY_BACKGROUND_COLOR, LIGHT_THEME_OVERLAY_BACKGROUND_COL
 import './modal.component.scss'
 
 export default function Modal (props) {
-    const { isDarkMode, show } = props
+    const { isDarkMode, show, backdropClickCallback } = props
+
+    const handleBackdropClick = () => {
+        backdropClickCallback()
+    }
       
     return (
         <>
@@ -14,6 +18,7 @@ export default function Modal (props) {
                 style={{
                     backgroundColor: isDarkMode ? DARK_THEME_OVERLAY_BACKGROUND_COLOR : LIGHT_THEME_OVERLAY_BACKGROUND_COLOR
                 }}
+                onClick={handleBackdropClick}
             /> : null}
             <div
                 className='modal'

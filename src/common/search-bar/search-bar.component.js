@@ -27,7 +27,9 @@ export default function SearchBar (props) {
 
   const handleOutsideClick = event => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+      if(searchQuery.length){
         clearFilteredResults()
+      }
     }
   }
 
@@ -57,7 +59,9 @@ export default function SearchBar (props) {
         ref={wrapperRef}
       />
       <IconWrapper>
-        {searchQuery.length ? <FaTimes /> : null}
+        {searchQuery.length 
+          ? <FaTimes onClick={handleCloseClick} />
+            : null}
       </IconWrapper>
     </div>
   )

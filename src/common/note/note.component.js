@@ -13,15 +13,18 @@ export default function Note (props) {
   const { pinClickCallback, archiveClickCallback, unArchiveNoteCallback, noteClickCallback } = props
   const isArchived = note.status === 'archived'
 
-  const handlePinClick = () => {
+  const handlePinClick = (event) => {
+    event.stopPropagation()
     pinClickCallback(note)
   }
 
-  const handleArchiveClick = () => {
+  const handleArchiveClick = (event) => {
+    event.stopPropagation()
     archiveClickCallback(note)
   }
 
-  const handleUnArchiveClick = () => {
+  const handleUnArchiveClick = (event) => {
+    event.stopPropagation()
     unArchiveNoteCallback(note)
   }
 

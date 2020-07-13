@@ -1,0 +1,17 @@
+@import '../../styles/colors.scss';
+
+.empty-state-wraper{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .empty-state-text{
+        margin-top: 20px;
+        font-size: 24px;
+        color: $dark-theme-text-color;
+    }
+}

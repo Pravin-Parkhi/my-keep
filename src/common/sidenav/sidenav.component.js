@@ -9,11 +9,11 @@ import {
     LIGHT_THEME_TEXT_COLOR
 } from '../../constants/variables.constant'
 
-import './sidenav.component.scss'
 import IconWrapper from '../icon-wrapper/icon-wrapper.component';
 
+import './sidenav.component.scss'
+
 export default function SideBar (props) {
-  console.log(props)
   const { isSideBarCollapsed, isDarkMode } = props
   
   return (
@@ -23,11 +23,7 @@ export default function SideBar (props) {
         width: isSideBarCollapsed ? '80px' : '320px',
         backgroundColor: isDarkMode ? DARK_THEME_BACKGROUND_COLOR : LIGHT_THEME_BACKGROUND_COLOR
       }}>
-      <NavLink
-        className='side-bar-option'
-        activeClassName='active-page'
-        to='/active-notes'
-      >
+      <NavLink className='side-bar-option' activeClassName='active-page' to='/active-notes'>
         <IconWrapper>
           <FaRegLightbulb />
         </IconWrapper>
