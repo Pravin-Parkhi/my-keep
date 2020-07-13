@@ -4,7 +4,7 @@ import { deepCopy } from '../../utils/object'
 import { createNote, updateNote } from '../../actions/app'
 
 import Note from '../../common/note/note.component'
-import CreateBox from '../../common/create-box/create-box.component'
+import NoteCreator from '../../common/note-creator/note-creator.component'
 
 import './active-note-list.component.scss'
 
@@ -34,7 +34,7 @@ function ActiveNoteList (props) {
   return (
     <div className='active-note-list-container'>
       <div className='create-box-container'>
-        <CreateBox
+        <NoteCreator
           handleCreateNote={createNote}
           {...props}
         />
