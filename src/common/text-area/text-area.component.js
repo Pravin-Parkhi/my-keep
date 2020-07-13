@@ -1,10 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 
 import './text-area.component.scss'
 
 export default function TextArea ({
     rows,
     value,
+    autofocus,
     placeholder,
     handleChangeCallback
 }) {
@@ -26,6 +27,7 @@ export default function TextArea ({
             ref={textareaRef}
             value={value}
             rows={rows}
+            autoFocus={autofocus}
             placeholder={placeholder}
             onChange={handleChange}
         />

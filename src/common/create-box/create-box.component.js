@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { FaArchive, FaThumbtack } from 'react-icons/fa';
+import { FaThumbtack } from 'react-icons/fa';
 import { MdArchive } from 'react-icons/md'
 import { deepCopy } from '../../utils/object';
 import { getUuidv4 } from '../../utils/misc';
@@ -105,6 +105,7 @@ export default function CreateBox (props) {
                 <div className='description-wrapper'>
                     <TextArea
                         rows='1'
+                        autofocus
                         placeholder='Take a note...'
                         value={values.description}
                         handleChangeCallback={(value)=> handleDescChange(value)}
@@ -123,7 +124,6 @@ export default function CreateBox (props) {
                     >
                         Close
                     </div>
-                    
                 </div>
             </div>
         )
