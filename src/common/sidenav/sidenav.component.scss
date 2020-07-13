@@ -2,7 +2,7 @@
 @import '../../styles/sizes.scss';
 
 .side-bar {
-  padding: 5px 20px 5px 0px;
+  padding: 10px 20px 5px 0px;
   top: $header-height + 8;
   box-sizing: border-box;
   height: calc(100vh - #{$header-height - 8});
@@ -44,7 +44,7 @@
   }
 
   .page-links:hover, .active-page {
-    background: rgba(135, 196, 250, 0.3) !important;
+    background: #2685ef !important;
     border-bottom-right-radius: 50px;
     border-top-right-radius: 50px;
   }

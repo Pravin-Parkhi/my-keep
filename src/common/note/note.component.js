@@ -2,7 +2,7 @@ import React from 'react'
 import { MdArchive, MdUnarchive } from 'react-icons/md'
 import { TiPinOutline, TiPin } from 'react-icons/ti'
 import { DARK_THEME_TEXT_COLOR, DARK_THEME_BORDER_COLOR, 
-  LIGHT_THEME_BORDER_COLOR, LIGHT_THEME_TEXT_COLOR } from '../../constants/variables.constant'
+  LIGHT_THEME_BORDER_COLOR, DARK_THEME_BACKGROUND_COLOR } from '../../constants/variables.constant'
 
 import IconWrapper from '../icon-wrapper/icon-wrapper.component'
 
@@ -39,16 +39,16 @@ export default function Note (props) {
       onClick={handleNoteClick}
     >
       <div className='title-wrapper'>
-          {note.title.length ? <p className='title' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : LIGHT_THEME_TEXT_COLOR}}>
+          <p className='title' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_BACKGROUND_COLOR}}>
             {note.title}
-          </p> : null}
+          </p>
           <IconWrapper>
             {note.isPinned ? 
               <TiPin className='pinned-icon' onClick={handlePinClick} />
                 : <TiPinOutline className='pinned-icon' onClick={handlePinClick} />}
           </IconWrapper>
       </div>
-      <p className='description' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : LIGHT_THEME_TEXT_COLOR}}>
+      <p className='description' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_BACKGROUND_COLOR}}>
           {note.description}
       </p>
       <div className='action-wrapper'>

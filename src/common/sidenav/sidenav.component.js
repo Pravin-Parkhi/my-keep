@@ -29,7 +29,9 @@ export default function SideBar (props) {
         </IconWrapper>
         <p
             className='menu-name'
-            style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : LIGHT_THEME_TEXT_COLOR}}
+            style={{
+              color: isDarkMode ? DARK_THEME_TEXT_COLOR : LIGHT_THEME_TEXT_COLOR
+            }}
         >
             Active
         </p>
@@ -40,7 +42,9 @@ export default function SideBar (props) {
         </IconWrapper>
         <p
             className='menu-name'
-            style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : LIGHT_THEME_TEXT_COLOR}}
+            style={{
+              color: isDarkMode ? DARK_THEME_TEXT_COLOR : LIGHT_THEME_TEXT_COLOR
+            }}
         >Archived</p>
       </NavLink>
     </div>
