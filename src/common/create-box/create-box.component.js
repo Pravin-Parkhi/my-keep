@@ -10,7 +10,7 @@ import IconWrapper from '../icon-wrapper/icon-wrapper.component';
 import './create-box.component.scss'
 
 export default function CreateBox (props) {
-    const { values, isDarkMode } = props
+    const { values, isDarkMode, showDeleteOption } = props
     const { titleChangeCallback, descriptionChangeCallback, closeClickCallback,
         pinClickedCallback, archiveClickCallback, trashClickCallback } = props
 
@@ -60,9 +60,9 @@ export default function CreateBox (props) {
                         ? <MdUnarchive onClick={handleArchiveClick} /> 
                             : <MdArchive onClick={handleArchiveClick} />}
                 </IconWrapper>
-                <IconWrapper>
+                {showDeleteOption && <IconWrapper>
                     <FaRegTrashAlt className='action-button' onClick={handleTrashClick} />
-                </IconWrapper>
+                </IconWrapper>}
                 <div
                     className='close-btn'
                     onClick={handleCloseClick}

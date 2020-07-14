@@ -61,6 +61,7 @@ export default function NoteModifier (props) {
             <CreateBox
                 {...props}
                 values={activeNotevalues}
+                showDeleteOption={true}
                 closeClickCallback={handleCloseClick}
                 titleChangeCallback={(title) => handleTitleChange(title)}
                 descriptionChangeCallback={(description) => handleDescChange(description)}

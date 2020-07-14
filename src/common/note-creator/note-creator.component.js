@@ -94,10 +94,10 @@ export default function NoteCreator (props) {
                 <CreateBox
                     {...props}
                     values={values}
+                    showDeleteOption={false}
                     closeClickCallback={handleCloseClick}
                     titleChangeCallback={(title) => handleTitleChange(title)}
                     descriptionChangeCallback={(description) => handleDescChange(description)}
-                    trashClickCallback={() => {}}
                 />
             </div>
         )
