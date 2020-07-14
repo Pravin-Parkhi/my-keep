@@ -15,7 +15,6 @@ export default () => {
           <Route exact path='/' render={() => (<Redirect to='/active-notes' />)} /> 
           <Route exact path='/active-notes' component={ActiveNoteList} />
           <Route exact path='/archived-notes' component={ArchivedNoteList} />
-
           <Route exact path='/search' component={FilteredNoteList} />
         </BaseLayout>
       </Switch>

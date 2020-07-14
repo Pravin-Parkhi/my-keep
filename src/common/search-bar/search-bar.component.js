@@ -51,6 +51,7 @@ export default function SearchBar (props) {
   return (
     <div
       className='search-bar-wrapper'
+      ref={wrapperRef}
       style={{
         color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_OVERLAY_BACKGROUND_COLOR,
         backgroundColor: isDarkMode ? DARK_THEME_SEARCH_BAR_BACKGROUND_COLOR : LIGHT_THEME_SEARCH_BAR_BACKGROUND_COLOR
@@ -64,10 +65,8 @@ export default function SearchBar (props) {
         placeholder="Search.."
         value={searchQuery}
         onChange={handleChange}
-        ref={wrapperRef}
         style={{
           color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_OVERLAY_BACKGROUND_COLOR,
-          // backgroundColor: isDarkMode ? DARK_THEME_SEARCH_BAR_BACKGROUND_COLOR : LIGHT_THEME_SEARCH_BAR_BACKGROUND_COLOR
         }}
       />
       <IconWrapper>

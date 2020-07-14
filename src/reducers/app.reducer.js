@@ -8,7 +8,6 @@ const defaultState = {
   isSideBarCollapsed: true,
   globalSearchQuery: '',
   filteredNoteList: [],
-
   noteList: MOCK_DATA
 };
 
