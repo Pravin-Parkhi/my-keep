@@ -47,18 +47,22 @@ export default function Note (props) {
     >
       <div className='note-info'>
         <div className='title-wrapper'>
-            <p className='title' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_BACKGROUND_COLOR}}>
-              {note.title.length ? note.title : note.description}
-            </p>
+            {note.title.length 
+              ? <p className='title' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_BACKGROUND_COLOR}}>
+                  {note.title}
+                </p>
+                : <p className='description' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_BACKGROUND_COLOR}}>
+                    {note.description}
+            </p>}
             <IconWrapper>
               {note.isPinned ? 
                 <TiPin className='pinned-icon' onClick={handlePinClick} />
                   : <TiPinOutline className='pinned-icon' onClick={handlePinClick} />}
             </IconWrapper>
         </div>
-        <p className='description' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_BACKGROUND_COLOR}}>
-            {note.title.length ? note.description : null}
-        </p>
+        {note.title.length ? <p className='description' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_BACKGROUND_COLOR}}>
+            {note.description}
+        </p> : null}
       </div>
       <div className='action-wrapper'>
         <IconWrapper>
