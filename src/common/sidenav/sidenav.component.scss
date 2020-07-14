@@ -1,51 +1,83 @@
 @import '../../styles/colors.scss';
 @import '../../styles/sizes.scss';
 
+@mixin hightlight-icon {
+  fill: $white-color;
+  stroke: $white-color;
+}
+
 .side-bar {
   padding: 10px 20px 5px 0px;
-  top: $header-height + 8;
   box-sizing: border-box;
+  transition: 0.5s;
   height: calc(100vh - #{$header-height - 8});
+  &.collapsed{
+    width: 100px;
+  }
+  &.open{
+    width: 320px;
+  }
 
   .side-bar-option {
     height: 50px;
     text-align: center;
-    padding: 2px 0 2px 20px;
+    padding: 10px 15px;
     display: flex;
     align-items: center;
+    transition: 0.3s;
+    position: relative;
+    box-sizing: border-box;
     text-decoration: none;
-    
-    &:hover {
-      background-color: $icon-background-color;
-      border-bottom-right-radius: 50px;
-      border-top-right-radius: 50px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    margin-bottom: 5px;
+    .side-nav-icon-wrapper{
+      width: 50px;
+      height: 50px;
+      display: flex;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
     }
-
     .menu-name{
       margin-left: 20px;
-      font-size: 16px;
+      font-family: OpenSansSemiBold;
+      position: absolute;
+      left: 60px;
+      top: -2px;
     }
   }
+}
 
-  .side-bar-option:last-child { 
-    border-bottom: none;
+.side-bar.open{
+  .menu-name{
+    display: block;
   }
-
-  .credit-icon {
-    height: 30px;
+  .side-bar-option:hover{
+    background-color: $icon-background-color;
   }
-
-  .ad-icon {
-    height: 25px;
+  .side-bar-option.active-page{
+    background-color: $primary-color;
+    svg{
+      @include hightlight-icon;
+    }
   }
-
-  .page-links{
-    color: $primary-color;
+}
+.side-bar.collapsed{
+  .menu-name{
+    display: none;
   }
-
-  .page-links:hover, .active-page {
-    background: #2685ef !important;
-    border-bottom-right-radius: 50px;
-    border-top-right-radius: 50px;
+  .side-bar-option:hover{
+    .side-nav-icon-wrapper{
+      background-color: $icon-background-color;
+    }
+  }
+  .side-bar-option.active-page{
+    .side-nav-icon-wrapper{
+      background-color: $primary-color;
+      svg{
+        @include hightlight-icon;
+      }
+    }
   }
 }

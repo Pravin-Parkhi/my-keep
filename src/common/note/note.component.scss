@@ -7,35 +7,45 @@
     border: 1px solid;
     margin: 16px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     &:hover{
         box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 
         0 1px 3px 1px rgba(60,64,67,0.149);
-        .title-wrapper, .action-wrapper{
-            .pinned-icon, .action-button{
+        .note-info, .action-wrapper{
+            .title-wrapper, .action-button{
                 visibility: visible;
+                .pinned-icon{
+                    visibility: visible;
+                }    
             }
         }
+        
     }
-    .title-wrapper{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .title{
+    .note-info{
+        .title-wrapper{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .title{
+                width: calc(100% - 40px);
+                margin: 0px;
+                font-size: 16px;
+                font-family: OpenSansBold;
+    
+            }
+            .pinned-icon{
+                visibility: hidden;
+            }
+        }
+        .description{
             margin: 0px;
             font-size: 16px;
-            font-family: OpenSansBold;
-
+            line-height: 20px;
+            font-family: OpenSansRegular;
         }
-        .pinned-icon{
-            visibility: hidden;
-        }
-    }
-    .description{
-        margin: 0px;
-        font-size: 16px;
-        line-height: 20px;
-        font-family: OpenSansRegular;
     }
     .action-wrapper{
         display: flex;

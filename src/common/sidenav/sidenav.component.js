@@ -6,46 +6,47 @@ import {
     DARK_THEME_BACKGROUND_COLOR, 
     LIGHT_THEME_BACKGROUND_COLOR,
     DARK_THEME_TEXT_COLOR,
-    LIGHT_THEME_TEXT_COLOR
 } from '../../constants/variables.constant'
-
-import IconWrapper from '../icon-wrapper/icon-wrapper.component';
 
 import './sidenav.component.scss'
 
 export default function SideBar (props) {
   const { isSideBarCollapsed, isDarkMode } = props
-  
+
   return (
     <div 
-      className='side-bar' 
-      style={{
-        width: isSideBarCollapsed ? '80px' : '320px',
-        backgroundColor: isDarkMode ? DARK_THEME_BACKGROUND_COLOR : LIGHT_THEME_BACKGROUND_COLOR
-      }}>
-      <NavLink className='side-bar-option' activeClassName='active-page' to='/active-notes'>
-        <IconWrapper>
+      className={`side-bar ${isSideBarCollapsed ? 'collapsed' : 'open'}`}
+      style={{ backgroundColor: isDarkMode ? DARK_THEME_BACKGROUND_COLOR : LIGHT_THEME_BACKGROUND_COLOR }}
+    >
+      <NavLink
+        className='side-bar-option'
+        activeClassName='active-page'
+        to='/active-notes'
+      >
+        <div className='side-nav-icon-wrapper' >
           <FaRegLightbulb />
-        </IconWrapper>
+        </div>
         <p
-            className='menu-name'
-            style={{
-              color: isDarkMode ? DARK_THEME_TEXT_COLOR : LIGHT_THEME_TEXT_COLOR
-            }}
+          className='menu-name'
+          style={{ color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_BACKGROUND_COLOR }}
         >
-            Active
+          Active
         </p>
       </NavLink>
-      <NavLink className='side-bar-option' activeClassName='active-page' to='/archived-notes'>
-        <IconWrapper>
+      <NavLink
+        className='side-bar-option' 
+        activeClassName='active-page' 
+        to='/archived-notes'
+      >
+        <div className='side-nav-icon-wrapper'>
           <MdArchive />
-        </IconWrapper>
+        </div>
         <p
-            className='menu-name'
-            style={{
-              color: isDarkMode ? DARK_THEME_TEXT_COLOR : LIGHT_THEME_TEXT_COLOR
-            }}
-        >Archived</p>
+          className='menu-name'
+          style={{ color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_BACKGROUND_COLOR }}
+        >
+          Archived
+        </p>
       </NavLink>
     </div>
   )

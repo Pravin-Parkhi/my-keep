@@ -38,3 +38,12 @@ code {
   src: local('Open Sans'), local('OpenSans'),
        url('../assets/fonts/OpenSans-Bold.ttf') format('truetype')
 }
+
+@font-face {
+  font-family: 'OpenSansSemiBold';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/OpenSans-SemiBold.ttf');
+  src: local('Open Sans'), local('OpenSans'),
+       url('../assets/fonts/OpenSans-SemiBold.ttf') format('truetype')
+}

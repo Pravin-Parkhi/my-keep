@@ -2,8 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { IconContext } from "react-icons"
 import { withRouter } from 'react-router-dom'
-import { FaBars, FaSearch, FaCog } from 'react-icons/fa'
-import { WiMoonAltWaxingGibbous1 } from 'react-icons/wi'
+import { FaBars } from 'react-icons/fa'
+import { FiMoon } from 'react-icons/fi'
+import { RiSunLine } from 'react-icons/ri'
 import { getFilteredNoteList, clearSearchQuery, setAppTheme } from '../../actions/app'
 import { DARK_THEME_BACKGROUND_COLOR, LIGHT_THEME_BACKGROUND_COLOR } from '../../constants/variables.constant'
 
@@ -57,12 +58,9 @@ function Header (props) {
         />
       </div>
       <div className='right-section'>
-        {/* <IconWrapper>
-          <FaSearch />
-        </IconWrapper> */}
         <div className='switch-wrapper'>
           <IconContext.Provider value={{ color: '#939393', size: 30 }}>
-            <WiMoonAltWaxingGibbous1 />
+            {isDarkMode ? <FiMoon /> : <RiSunLine />}
           </IconContext.Provider>
           <Switch {...props} switchChangeCallback={handleSwitchChange} />
         </div>
