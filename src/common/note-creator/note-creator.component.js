@@ -97,6 +97,7 @@ export default function NoteCreator (props) {
                     closeClickCallback={handleCloseClick}
                     titleChangeCallback={(title) => handleTitleChange(title)}
                     descriptionChangeCallback={(description) => handleDescChange(description)}
+                    trashClickCallback={() => {}}
                 />
             </div>
         )

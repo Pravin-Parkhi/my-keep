@@ -9,7 +9,7 @@ import './note-modifier.component.scss'
 export default function NoteModifier (props) {
     const [activeNotevalues, setActiveNoteValues] = useState(undefined)
 
-    const { isDarkMode, activeNote, updateNoteCallback } = props
+    const { isDarkMode, activeNote, updateNoteCallback, trashClickCallback } = props
 
     const handleTitleChange = (title) => {
         let valuesCopy = deepCopy(activeNotevalues)
@@ -66,6 +66,7 @@ export default function NoteModifier (props) {
                 descriptionChangeCallback={(description) => handleDescChange(description)}
                 pinClickedCallback={handlePinClick}
                 archiveClickCallback={handleArchiveClick}
+                trashClickCallback={(note) => trashClickCallback(note)}
             />
         </Modal>
     )

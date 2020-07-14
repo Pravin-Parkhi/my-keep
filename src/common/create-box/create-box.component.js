@@ -2,6 +2,7 @@ import React from 'react'
 import { TiPinOutline, TiPin } from 'react-icons/ti'
 import { MdArchive, MdUnarchive } from 'react-icons/md'
 import { DARK_THEME_TEXT_COLOR, DARK_THEME_OVERLAY_BACKGROUND_COLOR } from '../../constants/variables.constant'
+import { FaRegTrashAlt } from 'react-icons/fa'
 
 import TextArea from '../text-area/text-area.component';
 import IconWrapper from '../icon-wrapper/icon-wrapper.component';
@@ -11,7 +12,7 @@ import './create-box.component.scss'
 export default function CreateBox (props) {
     const { values, isDarkMode } = props
     const { titleChangeCallback, descriptionChangeCallback, closeClickCallback,
-        pinClickedCallback, archiveClickCallback } = props
+        pinClickedCallback, archiveClickCallback, trashClickCallback } = props
 
     const handleCloseClick = () => {
         closeClickCallback()
@@ -23,6 +24,10 @@ export default function CreateBox (props) {
 
     const handleArchiveClick = () => {
         archiveClickCallback(values)
+    }
+
+    const handleTrashClick = () => {
+        trashClickCallback(values)
     }
 
     return (
@@ -54,6 +59,9 @@ export default function CreateBox (props) {
                     {(values && values.status === 'archived') 
                         ? <MdUnarchive onClick={handleArchiveClick} /> 
                             : <MdArchive onClick={handleArchiveClick} />}
+                </IconWrapper>
+                <IconWrapper>
+                    <FaRegTrashAlt className='action-button' onClick={handleTrashClick} />
                 </IconWrapper>
                 <div
                     className='close-btn'

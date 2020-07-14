@@ -41,6 +41,9 @@ function ActiveNoteList (props) {
 
   const handleTrashClick = (note) => {
     deleteNote(note)
+    if(showNoteModifier){
+      setNoteModifier(false)
+    }
   }
 
   const handleNoteClick = (note) => {
@@ -105,6 +108,7 @@ function ActiveNoteList (props) {
         show={showNoteModifier}
         activeNote={activeNote}
         updateNoteCallback={(note) => handleUpdateNote(note)}
+        trashClickCallback={(note) => handleTrashClick(note)}
       />}
     </div>
   )

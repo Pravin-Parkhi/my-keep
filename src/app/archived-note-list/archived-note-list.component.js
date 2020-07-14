@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { updateNote } from '../../actions/app'
+import { updateNote, deleteNote } from '../../actions/app'
 import { deepCopy } from '../../utils/object'
 import { MdArchive } from 'react-icons/md'
 
@@ -12,7 +12,7 @@ import './archived-note-list.component.scss'
 
 function ArchivedNoteList (props) {
   const { noteList } = props
-  const { updateNote } = props
+  const { updateNote, deleteNote } = props
   const [activeNote, setActiveNote] = useState(undefined)
   const [showNoteModifier, setNoteModifier] = useState(false)
   const archivedNoteList = noteList.filter(note => (note.status === 'archived'))
@@ -29,6 +29,13 @@ function ArchivedNoteList (props) {
     noteCopy.isPinned = !note.isPinned
     noteCopy.status = 'active'
     updateNote(noteCopy)
+  }
+
+  const handleTrashClick = (note) => {
+    deleteNote(note)
+    if(showNoteModifier){
+      setNoteModifier(false)
+    }
   }
 
   const handleNoteClick = (note) => {
@@ -61,6 +68,7 @@ function ArchivedNoteList (props) {
                 unArchiveNoteCallback={(note) => handleUnarchiveClick(note)}
                 pinClickCallback={(note) => handlePinClick(note)}
                 noteClickCallback={(note) => handleNoteClick(note)}
+                trashNoteCallback={(note) => handleTrashClick(note)}
               />)}
             </div>
           </div> 
@@ -74,6 +82,7 @@ function ArchivedNoteList (props) {
         show={showNoteModifier}
         activeNote={activeNote}
         updateNoteCallback={(note) => handleUpdateNote(note)}
+        trashClickCallback={(note) => handleTrashClick(note)}
       />}
     </div>
   )
@@ -86,4 +95,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default (connect(mapStateToProps, { updateNote })(ArchivedNoteList))
+export default (connect(mapStateToProps, { updateNote, deleteNote })(ArchivedNoteList))
