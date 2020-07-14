@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { deepCopy } from '../../utils/object'
+import { RiSearch2Line } from 'react-icons/ri'
 import { updateNote, getFilteredNoteList } from '../../actions/app'
 
 import queryString from 'query-string'
 import Note from '../../common/note/note.component'
 
 import './filtered-note-list.component.scss'
+import EmptyList from '../../common/empty-list/empty-list.component'
 
 function FilteredNoteList (props) {
   const { filteredNoteList, globalSearchQuery } = props
@@ -67,6 +69,13 @@ function FilteredNoteList (props) {
           />)}
         </div>
       </div> : null}
+
+      {(!archivedNoteList.length && !activeNoteList.length) 
+        ? <EmptyList
+            emptyStateIcon={<RiSearch2Line />}
+            emptyStateText='No matching results'
+        /> 
+          : null}
     </div>
   )
 }

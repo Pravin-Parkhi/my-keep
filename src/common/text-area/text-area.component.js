@@ -32,7 +32,9 @@ export default function TextArea ({
                 autoFocus={autofocus}
                 placeholder={placeholder}
                 onChange={handleChange}
-                style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_OVERLAY_BACKGROUND_COLOR}}
+                style={{
+                    color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_OVERLAY_BACKGROUND_COLOR
+                }}
             />
         </div>
     )

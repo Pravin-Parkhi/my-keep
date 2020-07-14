@@ -6,11 +6,12 @@ import { FaBars } from 'react-icons/fa'
 import { FiMoon } from 'react-icons/fi'
 import { RiSunLine } from 'react-icons/ri'
 import { getFilteredNoteList, clearSearchQuery, setAppTheme } from '../../actions/app'
-import { DARK_THEME_BACKGROUND_COLOR, LIGHT_THEME_BACKGROUND_COLOR } from '../../constants/variables.constant'
+import { DARK_THEME_BACKGROUND_COLOR, LIGHT_THEME_BACKGROUND_COLOR, DARK_THEME_TEXT_COLOR } from '../../constants/variables.constant'
 
 import Switch from '../switch/switch.component'
 import SearchBar from '../search-bar/search-bar.component'
 import IconWrapper from '../icon-wrapper/icon-wrapper.component'
+import BrandLogo from '../../assets/images/my-keep.png'
 
 import './header.component.scss'
 
@@ -42,12 +43,29 @@ function Header (props) {
     setAppTheme()
   }
 
+  const getActiveMenuName = () => {
+    const { location } = props
+    if (location.pathname === '/active-notes') return 'Active'
+      else if (location.pathname === '/archived-notes') return 'Archived'
+  }
+
+  console.log(getActiveMenuName())
+
   return (
     <div className='header-wrapper' style={{backgroundColor: isDarkMode ? DARK_THEME_BACKGROUND_COLOR : LIGHT_THEME_BACKGROUND_COLOR}}>
       <div className='left-section'>
         <IconWrapper iconClickCallback={handleHamburgerClick}>
           <FaBars />
         </IconWrapper>
+        <div className='brand-name-wrapper'>
+          <img src={BrandLogo} alt='My Keep' className='brand-logo' />
+          <p
+            className='brand-name'
+            style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_BACKGROUND_COLOR}}
+          >
+            {getActiveMenuName()}
+          </p>
+        </div>
       </div>
       <div className='middle-section'>
         <SearchBar
