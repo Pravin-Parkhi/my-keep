@@ -11,10 +11,15 @@
         display: flex;
 
         .view-wrapper{
+            padding: 10px 10px 10px 80px;
             overflow-y: auto;
             height: calc(100vh - #{$header-height - 8px});
             flex: auto;
-            transition: .5s;
+            transition: 0.5s;
+
+            @media only screen and (min-width: 768px) {
+                padding: 10px;
+            }
         }
     }
 }

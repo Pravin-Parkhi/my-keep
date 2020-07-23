@@ -14,16 +14,22 @@
     0px 1px 10px 0px rgba(0,0,0,0.12);
 
     .left-section{
-        width: 20%;
         display: flex;
         align-items: center;
         .brand-name-wrapper{
             display: flex;
             align-items: center;
-            margin-left: 20px;
+            margin-left: 25px;
+            @media only screen and (min-width: 768px) {
+                margin-left: 20px;
+            }
             .brand-logo{
-                width: 40px;
-                height: 40px;
+                width: 35px;
+                height: 35px;
+                @media only screen and (min-width: 768px) {
+                    width: 40px;
+                    height: 40px;
+                }
             }
             .brand-name{
                 font-size: 18px;
@@ -35,11 +41,18 @@
     }
     .middle-section{
         width: 50%;
+        display: none;
+        @media only screen and (min-width: 768px) {
+            display: block;
+        }
     }
     .right-section{
         width: 30%;
         display: flex;
         justify-content: flex-end;
+        .search-icon-wrapper{
+            margin-right: 10px;
+        }
         .switch-wrapper{
             display: flex;
             align-items: center;

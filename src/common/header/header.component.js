@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { IconContext } from "react-icons"
 import { withRouter } from 'react-router-dom'
 import { FaBars } from 'react-icons/fa'
+import { MdSearch } from 'react-icons/md'
 import { FiMoon } from 'react-icons/fi'
 import { RiSunLine } from 'react-icons/ri'
 import { getFilteredNoteList, clearSearchQuery, setAppTheme } from '../../actions/app'
@@ -21,6 +22,10 @@ function Header (props) {
   
   const handleHamburgerClick = () => {
     setSideBarVisibilityCallback()
+  }
+
+  const handleSearchIconClick = () => {
+    console.log('gaga')
   }
 
   const handleSearchNote = (searchQuery) => {
@@ -74,8 +79,13 @@ function Header (props) {
         />
       </div>
       <div className='right-section'>
-        <div className='switch-wrapper'>
+        <div className='search-icon-wrapper'>
           <IconContext.Provider value={{ color: '#939393', size: 30 }}>
+            <MdSearch onClick={handleSearchIconClick} />
+          </IconContext.Provider>
+        </div>
+        <div className='switch-wrapper'>
+          <IconContext.Provider value={{ color: '#939393', size: 26 }}>
             {isDarkMode ? <FiMoon /> : <RiSunLine />}
           </IconContext.Provider>
           <Switch {...props} switchChangeCallback={handleSwitchChange} />

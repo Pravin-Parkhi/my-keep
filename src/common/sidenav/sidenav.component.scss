@@ -7,15 +7,26 @@
 }
 
 .side-bar {
-  padding: 10px 20px 5px 0px;
+  padding: 10px 0px 5px 0px;
   box-sizing: border-box;
   transition: 0.5s;
+  position: fixed;
+  z-index: 10;
   height: calc(100vh - #{$header-height - 8});
   &.collapsed{
-    width: 100px;
+    width: 80px;
   }
   &.open{
-    width: 320px;
+    width: 280px;
+    box-shadow: 0 16px 10px 0 rgba(0,0,0,0.14), 
+      0 11px 18px 0 rgba(0,0,0,0.12), 
+      0 13px 5px -1px rgba(0,0,0,0.2);
+      @media only screen and (min-width: 768px) {
+        box-shadow: none;
+      }
+  }
+  @media only screen and (min-width: 768px) {
+    position: relative;
   }
 
   .side-bar-option {
