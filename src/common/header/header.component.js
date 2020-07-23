@@ -48,9 +48,7 @@ function Header (props) {
     if (location.pathname === '/active-notes') return 'Active'
       else if (location.pathname === '/archived-notes') return 'Archived'
   }
-
-  console.log(getActiveMenuName())
-
+  
   return (
     <div className='header-wrapper' style={{backgroundColor: isDarkMode ? DARK_THEME_BACKGROUND_COLOR : LIGHT_THEME_BACKGROUND_COLOR}}>
       <div className='left-section'>

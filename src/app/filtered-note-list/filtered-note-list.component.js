@@ -1,23 +1,39 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { deepCopy } from '../../utils/object'
 import { RiSearch2Line } from 'react-icons/ri'
-import { updateNote, getFilteredNoteList } from '../../actions/app'
+import { updateNote, deleteNote, getFilteredNoteList } from '../../actions/app'
 
 import queryString from 'query-string'
 import Note from '../../common/note/note.component'
+import EmptyList from '../../common/empty-list/empty-list.component'
+import NoteModifier from '../../common/note-modifier/note-modifier.component'
 
 import './filtered-note-list.component.scss'
-import EmptyList from '../../common/empty-list/empty-list.component'
 
 function FilteredNoteList (props) {
+  const [activeNote, setActiveNote] = useState(undefined)
+  const [showNoteModifier, setNoteModifier] = useState(false)
+
   const { filteredNoteList, globalSearchQuery } = props
-  const { updateNote, getFilteredNoteList } = props
+  const { updateNote, deleteNote, getFilteredNoteList } = props
   const archivedNoteList = filteredNoteList.filter(note => note.status === 'archived')
   const activeNoteList = filteredNoteList.filter(note => note.status === 'active')
 
+  const handleNoteClick = (note) => {
+    setActiveNote(note)
+    setTimeout(()=> {
+      toggleNoteModifier()
+    },0)
+  }
+
   const handleUpdateNote = (updatedNote) => {
     updateNote(updatedNote)
+    if(showNoteModifier){
+      setTimeout(()=> {
+        toggleNoteModifier()
+      }, 0)
+    }
   }
 
   const handlePinClick = (note) => {
@@ -33,9 +49,20 @@ function FilteredNoteList (props) {
     handleUpdateNote(noteCopy)
   }
 
+  const handleTrashClick = (note) => {
+    deleteNote(note)
+    if(showNoteModifier){
+      setNoteModifier(false)
+    }
+  }
+
   const fetchFilteredNotes = () => {
     const urlParams = queryString.parse(props.location.search)
     getFilteredNoteList(urlParams.q)
+  }
+
+  const toggleNoteModifier = () => {
+    setNoteModifier(!showNoteModifier)
   }
 
   useEffect(()=> {
@@ -53,6 +80,8 @@ function FilteredNoteList (props) {
             key={note.id}
             archiveClickCallback={(note) => handleArchiveClick(note)}
             pinClickCallback={(note) => handlePinClick(note)}
+            noteClickCallback={(note) => handleNoteClick(note)}
+            trashNoteCallback={(note) => handleTrashClick(note)}
           />)}
         </div>
       </div> : null}
@@ -66,6 +95,8 @@ function FilteredNoteList (props) {
             key={note.id}
             archiveClickCallback={(note) => handleArchiveClick(note)}
             pinClickCallback={(note) => handlePinClick(note)}
+            noteClickCallback={(note) => handleNoteClick(note)}
+            trashNoteCallback={(note) => handleTrashClick(note)}
           />)}
         </div>
       </div> : null}
@@ -75,7 +106,17 @@ function FilteredNoteList (props) {
             emptyStateIcon={<RiSearch2Line />}
             emptyStateText='No matching results'
         /> 
-          : null}
+        : null}
+          
+      {showNoteModifier && <NoteModifier
+        {...props}
+        show={showNoteModifier}
+        activeNote={activeNote}
+        pinClickCallback={(note) => handlePinClick(note)}
+        noteClickCallback={(note) => handleNoteClick(note)}
+        updateNoteCallback={(note) => handleUpdateNote(note)}
+        trashClickCallback={(note) => handleTrashClick(note)}
+      />}
     </div>
   )
 }
@@ -88,4 +129,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default (connect(mapStateToProps, { updateNote, getFilteredNoteList })(FilteredNoteList))
+export default (connect(mapStateToProps, { updateNote, deleteNote, getFilteredNoteList })(FilteredNoteList))

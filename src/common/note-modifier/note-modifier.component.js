@@ -7,31 +7,31 @@ import CreateBox from '../create-box/create-box.component'
 import './note-modifier.component.scss'
 
 export default function NoteModifier (props) {
-    const [activeNotevalues, setActiveNoteValues] = useState(undefined)
+    const [activeNoteValues, setActiveNoteValues] = useState(undefined)
 
-    const { isDarkMode, activeNote, updateNoteCallback, trashClickCallback } = props
+    const { activeNote, updateNoteCallback, trashClickCallback } = props
 
     const handleTitleChange = (title) => {
-        let valuesCopy = deepCopy(activeNotevalues)
+        let valuesCopy = deepCopy(activeNoteValues)
         valuesCopy.title = title
         setActiveNoteValues(valuesCopy)
     }
 
     const handleDescChange = (description) => {
-        let valuesCopy = deepCopy(activeNotevalues)
+        let valuesCopy = deepCopy(activeNoteValues)
         valuesCopy.description = description
         setActiveNoteValues(valuesCopy)
     }
 
     const handlePinClick = () => {
-        let valuesCopy = deepCopy(activeNotevalues)
+        let valuesCopy = deepCopy(activeNoteValues)
         valuesCopy.isPinned = !valuesCopy.isPinned
         setActiveNoteValues(valuesCopy)
         updateNote(valuesCopy)
     }
 
     const handleArchiveClick = () => {
-        let valuesCopy = deepCopy(activeNotevalues)
+        let valuesCopy = deepCopy(activeNoteValues)
         if(valuesCopy.status === 'active'){
             valuesCopy.status = 'archived'
         } else {
@@ -47,7 +47,7 @@ export default function NoteModifier (props) {
     }
 
     const handleCloseClick = () => {
-        updateNote(activeNotevalues)
+        updateNote(activeNoteValues)
     }
 
     useEffect(() => {
@@ -57,10 +57,14 @@ export default function NoteModifier (props) {
     }, []);
 
     return (
-        <Modal {...props} backdropClickCallback={handleCloseClick}>
+        <Modal
+            {...props}
+            activeNoteValues={activeNoteValues}
+            backdropClickCallback={handleCloseClick}
+        >
             <CreateBox
                 {...props}
-                values={activeNotevalues}
+                values={activeNoteValues}
                 showDeleteOption={true}
                 closeClickCallback={handleCloseClick}
                 titleChangeCallback={(title) => handleTitleChange(title)}

@@ -1,28 +1,32 @@
-import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import React, { useState } from 'react'
 import { deepCopy } from '../../utils/object'
 import { FaRegLightbulb } from 'react-icons/fa'
 import { createNote, updateNote, deleteNote } from '../../actions/app'
 
 import Note from '../../common/note/note.component'
+import EmptyList from '../../common/empty-list/empty-list.component'
 import NoteCreator from '../../common/note-creator/note-creator.component'
 import NoteModifier from '../../common/note-modifier/note-modifier.component'
 
 import './active-note-list.component.scss'
-import EmptyList from '../../common/empty-list/empty-list.component'
 
 function ActiveNoteList (props) {
-  const { noteList } = props
-  const { createNote, updateNote, deleteNote } = props
   const [activeNote, setActiveNote] = useState(undefined)
   const [showNoteModifier, setNoteModifier] = useState(false)
+
+  const { noteList } = props
+  const { createNote, updateNote, deleteNote } = props
   const activeNoteList = noteList.filter(note => (note.status === 'active' && !note.isPinned))
   const pinnedNoteList = noteList.filter(note => note.isPinned)
 
   const handleUpdateNote = (updatedNote) => {
     updateNote(updatedNote)
+    
     if(showNoteModifier){
-      toggleNoteModifier()
+      setTimeout(()=> {
+        toggleNoteModifier()
+      }, 0)
     }
   }
 

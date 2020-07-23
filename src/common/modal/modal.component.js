@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { DARK_THEME_OVERLAY_BACKGROUND_COLOR, LIGHT_THEME_OVERLAY_BACKGROUND_COLOR, 
     DARK_THEME_BACKGROUND_COLOR, LIGHT_THEME_BACKGROUND_COLOR, DARK_THEME_BORDER_COLOR, 
     LIGHT_THEME_BORDER_COLOR,  DARK_THEME_BOX_SHADOW, LIGHT_THEME_BOX_SHADOW
@@ -7,21 +7,35 @@ import { DARK_THEME_OVERLAY_BACKGROUND_COLOR, LIGHT_THEME_OVERLAY_BACKGROUND_COL
 import './modal.component.scss'
 
 export default function Modal (props) {
-    const { isDarkMode, show, backdropClickCallback } = props
+    const { isDarkMode, backdropClickCallback, activeNoteValues } = props
 
     const handleBackdropClick = () => {
         backdropClickCallback()
     }
+    
+    const handleKeyDown = (event) => {
+        if(event.keyCode === 27 || event.key === 'Escape') {
+            handleBackdropClick()
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyDown);
+    
+        return () => {
+          document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [activeNoteValues]);
       
     return (
         <>
-            {show ? <div
+            <div
                 className='backdrop'
                 style={{
                     backgroundColor: isDarkMode ? DARK_THEME_OVERLAY_BACKGROUND_COLOR : LIGHT_THEME_OVERLAY_BACKGROUND_COLOR
                 }}
                 onClick={handleBackdropClick}
-            /> : null}
+            />
             <div
                 className='modal'
                 style={{

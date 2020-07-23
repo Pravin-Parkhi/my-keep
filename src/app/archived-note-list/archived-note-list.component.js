@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { updateNote, deleteNote } from '../../actions/app'
-import { deepCopy } from '../../utils/object'
 import { MdArchive } from 'react-icons/md'
+import { deepCopy } from '../../utils/object'
+import { updateNote, deleteNote } from '../../actions/app'
 
 import Note from '../../common/note/note.component'
 import EmptyList from '../../common/empty-list/empty-list.component'
@@ -11,10 +11,11 @@ import NoteModifier from '../../common/note-modifier/note-modifier.component'
 import './archived-note-list.component.scss'
 
 function ArchivedNoteList (props) {
-  const { noteList } = props
-  const { updateNote, deleteNote } = props
   const [activeNote, setActiveNote] = useState(undefined)
   const [showNoteModifier, setNoteModifier] = useState(false)
+
+  const { noteList } = props
+  const { updateNote, deleteNote } = props
   const archivedNoteList = noteList.filter(note => (note.status === 'archived'))
 
   const handleUnarchiveClick = (note) => {
@@ -46,8 +47,12 @@ function ArchivedNoteList (props) {
   }
 
   const handleUpdateNote = (note) => {
-    toggleNoteModifier()
     updateNote(note)
+    if(showNoteModifier){
+      setTimeout(()=> {
+        toggleNoteModifier()
+      }, 0)
+    }
   }
 
   const toggleNoteModifier = () => {
