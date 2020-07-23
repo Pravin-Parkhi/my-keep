@@ -7,7 +7,7 @@ import IconWrapper from '../icon-wrapper/icon-wrapper.component'
 import './search-bar.component.scss'
 import { DARK_THEME_TEXT_COLOR, DARK_THEME_OVERLAY_BACKGROUND_COLOR, DARK_THEME_SEARCH_BAR_BACKGROUND_COLOR, LIGHT_THEME_SEARCH_BAR_BACKGROUND_COLOR } from '../../constants/variables.constant';
 
-export default function SearchBar (props) {
+export default function  SearchBar (props) {
   const wrapperRef = useRef(null)
   const { isDarkMode } = props
   const { searchNoteCallback, persistedSearchQuery, clearFilteredResultsCallback } = props

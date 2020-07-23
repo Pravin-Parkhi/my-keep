@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { IconContext } from "react-icons"
 import { withRouter } from 'react-router-dom'
@@ -10,13 +10,17 @@ import { getFilteredNoteList, clearSearchQuery, setAppTheme } from '../../action
 import { DARK_THEME_BACKGROUND_COLOR, LIGHT_THEME_BACKGROUND_COLOR, DARK_THEME_TEXT_COLOR } from '../../constants/variables.constant'
 
 import Switch from '../switch/switch.component'
+import BrandLogo from '../../assets/images/my-keep.png'
 import SearchBar from '../search-bar/search-bar.component'
 import IconWrapper from '../icon-wrapper/icon-wrapper.component'
-import BrandLogo from '../../assets/images/my-keep.png'
+import useWindowDimensions from '../../hooks/useWindowDimensions'
 
 import './header.component.scss'
 
 function Header (props) {
+  const node = useRef()
+  const { width } = useWindowDimensions()
+  const [showSearchBar, setSearchBar] = useState(width <= 768 ? false : true)
   const { setSideBarVisibilityCallback, isDarkMode, globalSearchQuery, 
     getFilteredNoteList, clearSearchQuery, setAppTheme } = props
   
@@ -25,7 +29,7 @@ function Header (props) {
   }
 
   const handleSearchIconClick = () => {
-    console.log('gaga')
+    setSearchBar(true)
   }
 
   const handleSearchNote = (searchQuery) => {
@@ -39,6 +43,11 @@ function Header (props) {
 
   const handleClearSearchResults = () => {
     clearSearchQuery()
+    
+    if(width < 768){
+      setSearchBar(false)
+    }
+
     props.history.push({
       pathname: '/active-notes'
     })
@@ -53,9 +62,29 @@ function Header (props) {
     if (location.pathname === '/active-notes') return 'Active'
       else if (location.pathname === '/archived-notes') return 'Archived'
   }
+
+  const handleOutsideClick = e => {
+    if (node.current.contains(e.target)) {
+      return;
+    }
+    handleClearSearchResults()
+  };
+
+  useEffect(() => {
+    // add when mounted
+    document.addEventListener("mousedown", handleOutsideClick);
+    // return function to be called when unmounted
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
+  useEffect(()=> {
+    (width <= 768) ? setSearchBar(false) : setSearchBar(true)
+  }, [width])
   
   return (
-    <div className='header-wrapper' style={{backgroundColor: isDarkMode ? DARK_THEME_BACKGROUND_COLOR : LIGHT_THEME_BACKGROUND_COLOR}}>
+    <div className='header-wrapper' style={{backgroundColor: isDarkMode ? DARK_THEME_BACKGROUND_COLOR : LIGHT_THEME_BACKGROUND_COLOR}} ref={node}>
       <div className='left-section'>
         <IconWrapper iconClickCallback={handleHamburgerClick}>
           <FaBars />
@@ -71,12 +100,12 @@ function Header (props) {
         </div>
       </div>
       <div className='middle-section'>
-        <SearchBar
+        {showSearchBar ? <SearchBar
           {...props}
           persistedSearchQuery={globalSearchQuery}
           searchNoteCallback={(searchQuery)=> handleSearchNote(searchQuery)}
           clearFilteredResultsCallback={handleClearSearchResults}
-        />
+        /> : null}
       </div>
       <div className='right-section'>
         <div className='search-icon-wrapper'>

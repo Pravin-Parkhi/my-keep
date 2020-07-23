@@ -41,17 +41,17 @@
     }
     .middle-section{
         width: 50%;
-        display: none;
-        @media only screen and (min-width: 768px) {
-            display: block;
-        }
     }
     .right-section{
         width: 30%;
         display: flex;
         justify-content: flex-end;
         .search-icon-wrapper{
+            display: block;
             margin-right: 10px;
+            @media only screen and (min-width: 768px) {
+                display: none;
+            }
         }
         .switch-wrapper{
             display: flex;
