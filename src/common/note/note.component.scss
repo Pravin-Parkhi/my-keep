@@ -1,11 +1,9 @@
 @import '../../styles/colors.scss';
 
 .note-wrapper{
-    width: 240px;
     border-radius: 10px;
     padding: 5px 10px 5px 15px;
     border: 1px solid;
-    margin: 16px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -27,11 +25,11 @@
     .note-info{
         .title-wrapper{
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
             .title{
                 width: calc(100% - 40px);
-                margin: 0px;
+                margin: 10px 0px 0px;
                 font-size: 16px;
                 word-break: break-all;
                 font-family: OpenSansBold;

@@ -8,6 +8,7 @@ import Note from '../../common/note/note.component'
 import EmptyList from '../../common/empty-list/empty-list.component'
 import NoteCreator from '../../common/note-creator/note-creator.component'
 import NoteModifier from '../../common/note-modifier/note-modifier.component'
+import MasonryLayout from '../../common/masonry-layout/masonry-layout.component'
 
 import './active-note-list.component.scss'
 
@@ -72,7 +73,7 @@ function ActiveNoteList (props) {
 
       {(pinnedNoteList && pinnedNoteList.length) ? <div className='pinned-notes-wrapper'>
         <p className='heading'>pinned</p>
-        <div className='note-list'>
+        <MasonryLayout {...props} className='note-list'>
           {pinnedNoteList.map(note => <Note
             {...props}
             note={note}
@@ -82,12 +83,12 @@ function ActiveNoteList (props) {
             noteClickCallback={(note) => handleNoteClick(note)}
             trashNoteCallback={(note) => handleTrashClick(note)}
           />)}
-        </div>
+        </MasonryLayout>
       </div> : null}
-
+      
       {(activeNoteList && activeNoteList.length) ? <div className='other-notes-wrapper'>
         {(pinnedNoteList && pinnedNoteList.length) ? <p className='heading'>other</p> : null}
-        <div className='note-list'>
+        <MasonryLayout {...props} className='note-list'>
           {activeNoteList.map(note => <Note
             {...props}
             note={note}
@@ -97,7 +98,7 @@ function ActiveNoteList (props) {
             noteClickCallback={(note) => handleNoteClick(note)}
             trashNoteCallback={(note) => handleTrashClick(note)}
           />)}
-        </div>
+        </MasonryLayout>
       </div> : null}
 
       {(!pinnedNoteList.length && !activeNoteList.length) 

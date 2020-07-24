@@ -7,6 +7,7 @@ import { updateNote, deleteNote } from '../../actions/app'
 import Note from '../../common/note/note.component'
 import EmptyList from '../../common/empty-list/empty-list.component'
 import NoteModifier from '../../common/note-modifier/note-modifier.component'
+import MasonryLayout from '../../common/masonry-layout/masonry-layout.component'
 
 import './archived-note-list.component.scss'
 
@@ -65,7 +66,7 @@ function ArchivedNoteList (props) {
       {(archivedNoteList && archivedNoteList.length) 
         ? <div className='archived-notes-wrapper'>
             <p className='heading'>Archived</p>
-            <div className='note-list'>
+            <MasonryLayout {...props} className='note-list'>
               {archivedNoteList.map(note => <Note
                 {...props}
                 note={note}
@@ -75,8 +76,8 @@ function ArchivedNoteList (props) {
                 noteClickCallback={(note) => handleNoteClick(note)}
                 trashNoteCallback={(note) => handleTrashClick(note)}
               />)}
-            </div>
-          </div> 
+            </MasonryLayout>
+          </div>
           : <EmptyList
             emptyStateIcon={<MdArchive />}
             emptyStateText='Your archived notes appear here'

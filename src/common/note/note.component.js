@@ -41,11 +41,11 @@ export default function Note (props) {
 
   return (
     <div
-      className='note-wrapper'
+      className='note-wrapper masonry-brick'
       style={{color: isDarkMode ? DARK_THEME_BORDER_COLOR : LIGHT_THEME_BORDER_COLOR}}
       onClick={handleNoteClick}
     >
-      <div className='note-info'>
+      <div className='note-info masonry-content'>
         <div className='title-wrapper'>
             {note.title.length 
               ? <p className='title' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_BACKGROUND_COLOR}}>
@@ -54,6 +54,7 @@ export default function Note (props) {
                 : <p className='description' style={{color: isDarkMode ? DARK_THEME_TEXT_COLOR : DARK_THEME_BACKGROUND_COLOR}}>
                     {note.description}
             </p>}
+            
             <IconWrapper>
               {note.isPinned ? 
                 <TiPin className='pinned-icon' onClick={handlePinClick} />

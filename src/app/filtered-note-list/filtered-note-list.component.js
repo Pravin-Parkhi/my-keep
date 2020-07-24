@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { deepCopy } from '../../utils/object'
 import { RiSearch2Line } from 'react-icons/ri'
+import React, { useState, useEffect } from 'react'
 import { updateNote, deleteNote, getFilteredNoteList } from '../../actions/app'
 
 import queryString from 'query-string'
 import Note from '../../common/note/note.component'
 import EmptyList from '../../common/empty-list/empty-list.component'
 import NoteModifier from '../../common/note-modifier/note-modifier.component'
+import MasonryLayout from '../../common/masonry-layout/masonry-layout.component'
 
 import './filtered-note-list.component.scss'
 
@@ -73,7 +74,7 @@ function FilteredNoteList (props) {
     <div className='filtered-note-list-container'>
 
       {(activeNoteList && activeNoteList.length) ? <div className='active-notes-wrapper'>
-        <div className='note-list'>
+        <MasonryLayout {...props} className='note-list'>
           {activeNoteList.map(note => <Note
             {...props}
             note={note}
@@ -83,12 +84,12 @@ function FilteredNoteList (props) {
             noteClickCallback={(note) => handleNoteClick(note)}
             trashNoteCallback={(note) => handleTrashClick(note)}
           />)}
-        </div>
+        </MasonryLayout>
       </div> : null}
 
       {(archivedNoteList && archivedNoteList.length) ? <div className='archived-notes-wrapper'>
         <p className='heading'>archived</p>
-        <div className='note-list'>
+        <MasonryLayout {...props} className='note-list'>
           {archivedNoteList.map(note => <Note
             {...props}
             note={note}
@@ -98,7 +99,7 @@ function FilteredNoteList (props) {
             noteClickCallback={(note) => handleNoteClick(note)}
             trashNoteCallback={(note) => handleTrashClick(note)}
           />)}
-        </div>
+        </MasonryLayout>
       </div> : null}
 
       {(!archivedNoteList.length && !activeNoteList.length) 

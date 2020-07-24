@@ -42,6 +42,7 @@ function Header (props) {
   }
 
   const handleClearSearchResults = () => {
+    
     clearSearchQuery()
     
     if(width < 768){
@@ -67,7 +68,10 @@ function Header (props) {
     if (node.current.contains(e.target)) {
       return;
     }
-    handleClearSearchResults()
+
+    if(width < 768){
+      handleClearSearchResults()
+    }
   };
 
   useEffect(() => {
